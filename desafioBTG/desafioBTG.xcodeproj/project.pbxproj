@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		94200D4626951C8900D61707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D4526951C8900D61707 /* AppDelegate.swift */; };
 		94200D4826951C8900D61707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D4726951C8900D61707 /* SceneDelegate.swift */; };
-		94200D4A26951C8900D61707 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D4926951C8900D61707 /* ViewController.swift */; };
+		94200D4A26951C8900D61707 /* ConversionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D4926951C8900D61707 /* ConversionController.swift */; };
 		94200D4D26951C8900D61707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94200D4B26951C8900D61707 /* Main.storyboard */; };
 		94200D5026951C8900D61707 /* desafioBTG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94200D4E26951C8900D61707 /* desafioBTG.xcdatamodeld */; };
 		94200D5226951C8D00D61707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94200D5126951C8D00D61707 /* Assets.xcassets */; };
 		94200D5526951C8D00D61707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94200D5326951C8D00D61707 /* LaunchScreen.storyboard */; };
 		94200D6026951C8D00D61707 /* desafioBTGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D5F26951C8D00D61707 /* desafioBTGTests.swift */; };
 		94200D6B26951C8D00D61707 /* desafioBTGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D6A26951C8D00D61707 /* desafioBTGUITests.swift */; };
+		94200D7F2695290F00D61707 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D7E2695290F00D61707 /* NetworkManager.swift */; };
+		94200D8126952B3800D61707 /* CurrenciesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D8026952B3800D61707 /* CurrenciesListModel.swift */; };
+		94200D8326952CD900D61707 /* QuotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D8226952CD900D61707 /* QuotesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,7 @@
 		94200D4226951C8900D61707 /* desafioBTG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = desafioBTG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94200D4526951C8900D61707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94200D4726951C8900D61707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		94200D4926951C8900D61707 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		94200D4926951C8900D61707 /* ConversionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionController.swift; sourceTree = "<group>"; };
 		94200D4C26951C8900D61707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94200D4F26951C8900D61707 /* desafioBTG.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = desafioBTG.xcdatamodel; sourceTree = "<group>"; };
 		94200D5126951C8D00D61707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +54,9 @@
 		94200D6626951C8D00D61707 /* desafioBTGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = desafioBTGUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94200D6A26951C8D00D61707 /* desafioBTGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = desafioBTGUITests.swift; sourceTree = "<group>"; };
 		94200D6C26951C8D00D61707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94200D7E2695290F00D61707 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		94200D8026952B3800D61707 /* CurrenciesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListModel.swift; sourceTree = "<group>"; };
+		94200D8226952CD900D61707 /* QuotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +107,13 @@
 		94200D4426951C8900D61707 /* desafioBTG */ = {
 			isa = PBXGroup;
 			children = (
-				94200D4526951C8900D61707 /* AppDelegate.swift */,
-				94200D4726951C8900D61707 /* SceneDelegate.swift */,
-				94200D4926951C8900D61707 /* ViewController.swift */,
+				94200D7C2695216B00D61707 /* Service */,
+				94200D7B2695216300D61707 /* Model */,
+				94200D7A2695215900D61707 /* View */,
+				94200D792695213F00D61707 /* ViewModel */,
+				94200D7D269521BF00D61707 /* Utils */,
+				94200D782695205300D61707 /* Application */,
+				94200D4926951C8900D61707 /* ConversionController.swift */,
 				94200D4B26951C8900D61707 /* Main.storyboard */,
 				94200D5126951C8D00D61707 /* Assets.xcassets */,
 				94200D5326951C8D00D61707 /* LaunchScreen.storyboard */,
@@ -129,6 +139,53 @@
 				94200D6C26951C8D00D61707 /* Info.plist */,
 			);
 			path = desafioBTGUITests;
+			sourceTree = "<group>";
+		};
+		94200D782695205300D61707 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				94200D4526951C8900D61707 /* AppDelegate.swift */,
+				94200D4726951C8900D61707 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		94200D792695213F00D61707 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		94200D7A2695215900D61707 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		94200D7B2695216300D61707 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				94200D8026952B3800D61707 /* CurrenciesListModel.swift */,
+				94200D8226952CD900D61707 /* QuotesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		94200D7C2695216B00D61707 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				94200D7E2695290F00D61707 /* NetworkManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		94200D7D269521BF00D61707 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,9 +318,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94200D4A26951C8900D61707 /* ViewController.swift in Sources */,
+				94200D4A26951C8900D61707 /* ConversionController.swift in Sources */,
 				94200D4626951C8900D61707 /* AppDelegate.swift in Sources */,
+				94200D7F2695290F00D61707 /* NetworkManager.swift in Sources */,
 				94200D4826951C8900D61707 /* SceneDelegate.swift in Sources */,
+				94200D8326952CD900D61707 /* QuotesModel.swift in Sources */,
+				94200D8126952B3800D61707 /* CurrenciesListModel.swift in Sources */,
 				94200D5026951C8900D61707 /* desafioBTG.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
