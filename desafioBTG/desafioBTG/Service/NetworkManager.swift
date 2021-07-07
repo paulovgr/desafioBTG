@@ -13,11 +13,14 @@ enum NetworkError:  Error {
     case error(Error)
 }
 
-protocol Endpoint {
-    var baseURLString: String { get }
-    var path: String { get }
-   // var body: [String: Any]? { get }
+enum Endpoint {
+    case live
 }
+//protocol Endpoint {
+//    var baseURLString: String { get }
+//    var path: String { get }
+//   // var body: [String: Any]? { get }
+//}
 //enum EndpointCases: Endpoint {
 //    case live
 //    case list
