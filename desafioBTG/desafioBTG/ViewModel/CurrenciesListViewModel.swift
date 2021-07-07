@@ -15,8 +15,8 @@ class CurrenciesListViewModel   {
         
     }
     
-    func getQuotes(_ completion: @escaping (Result<CurrenciesListModel, Error>) -> Void) {
-        service.request(.live, completion: completion)
+    func getQuotes(completion: @escaping (Result<CurrenciesListModel, Error>) -> Void) {
+        service.request(completion: completion)
     }
     
     func setQuotes()  {

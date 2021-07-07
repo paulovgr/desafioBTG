@@ -13,61 +13,50 @@ enum NetworkError:  Error {
     case error(Error)
 }
 
-enum Endpoint {
+enum Endpoint: String {
     case live
+    case list
 }
-//protocol Endpoint {
-//    var baseURLString: String { get }
-//    var path: String { get }
-//   // var body: [String: Any]? { get }
-//}
-//enum EndpointCases: Endpoint {
-//    case live
-//    case list
-//    case convert
-//
-//
-//    var baseURLString: String {
-//        return "https://pabloblan.co/api/"
-//    }
-//
-//
-//    var path: String {
-//        switch self {
-//        case .live:
-//            return "live"
-//        case .list:
-//            return "list"
-//        case .convert:
-//            return "convert"
-//        }
-//
-//    }
-//
-//}
-//
-//
-//var body: [String : Any]?
-//
-//
-//}
+
 
 protocol NetworkManagerProtocol {
-    func request<T: Decodable> (_ endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void)
+    func request<T: Decodable> (completion: @escaping (Result<T, Error>) -> Void)
 }
 public class NetworkManager: NetworkManagerProtocol {
-    func request<T>(_ endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
-        let endpoint = "http://api.currencylayer.com/list?access_key=3bdda02ece03a789028d549bb36adadd"
+    
+    func parameters (urlComponents:URLComponents, initials: String? = nil) -> [URLQueryItem]? {
+        var query = [URLQueryItem]()
         
-        guard let url = URL(string: endpoint) else {
+        if let initials = initials {
+            query.append(URLQueryItem(name: "currencies" , value: initials))
+        }
+        
+        query.append(URLQueryItem(name: "access_key", value: "3bdda02ece03a789028d549bb36adadd"))
+        return query
+    }
+    
+    func makeURL(initials: String? = nil, endpoint: Endpoint) -> URL? {
+        var components = URLComponents()
+
+        components.scheme = "http"
+        components.host = "api.currencylayer.com"
+        components.path = "/\(endpoint.rawValue)"
+        components.queryItems = parameters(urlComponents: components, initials: initials)
+
+        return components.url?.absoluteURL
+    }
+    
+    func request<T>(completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
+
+        guard let url = makeURL(endpoint: .list) else {
             completion(.failure(NSError()))
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
-             guard let data = data else {
-                 return
-             }
+            guard let data = data else {
+                return
+            }
             
             do {
                 let response = try JSONDecoder().decode(T.self, from: data)
@@ -81,7 +70,7 @@ public class NetworkManager: NetworkManagerProtocol {
             }
         }
         task.resume()
-
+        
     }
     
     
