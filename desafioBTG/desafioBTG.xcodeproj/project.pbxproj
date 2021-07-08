@@ -20,6 +20,8 @@
 		94200D8126952B3800D61707 /* CurrenciesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D8026952B3800D61707 /* CurrenciesListModel.swift */; };
 		94200D8326952CD900D61707 /* QuotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D8226952CD900D61707 /* QuotesModel.swift */; };
 		949D9665269542150021A897 /* CurrenciesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9664269542150021A897 /* CurrenciesListViewModel.swift */; };
+		949D9668269673910021A897 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9667269673900021A897 /* ViewCode.swift */; };
+		949D966A2696756A0021A897 /* QuotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D96692696756A0021A897 /* QuotesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		94200D8026952B3800D61707 /* CurrenciesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListModel.swift; sourceTree = "<group>"; };
 		94200D8226952CD900D61707 /* QuotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesModel.swift; sourceTree = "<group>"; };
 		949D9664269542150021A897 /* CurrenciesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewModel.swift; sourceTree = "<group>"; };
+		949D9667269673900021A897 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
+		949D96692696756A0021A897 /* QuotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 		94200D7A2695215900D61707 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				949D96692696756A0021A897 /* QuotesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 		94200D7D269521BF00D61707 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				949D9667269673900021A897 /* ViewCode.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -323,12 +329,14 @@
 			files = (
 				94200D4A26951C8900D61707 /* ConversionController.swift in Sources */,
 				94200D4626951C8900D61707 /* AppDelegate.swift in Sources */,
+				949D9668269673910021A897 /* ViewCode.swift in Sources */,
 				94200D7F2695290F00D61707 /* NetworkManager.swift in Sources */,
 				949D9665269542150021A897 /* CurrenciesListViewModel.swift in Sources */,
 				94200D4826951C8900D61707 /* SceneDelegate.swift in Sources */,
 				94200D8326952CD900D61707 /* QuotesModel.swift in Sources */,
 				94200D8126952B3800D61707 /* CurrenciesListModel.swift in Sources */,
 				94200D5026951C8900D61707 /* desafioBTG.xcdatamodeld in Sources */,
+				949D966A2696756A0021A897 /* QuotesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

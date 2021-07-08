@@ -9,12 +9,16 @@ import UIKit
 
 class ConversionController: UIViewController {
     let viewModel  = CurrenciesListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.setQuotes()
+      //  viewModel.setQuotes()
         // Do any additional setup after loading the view.
     }
 
+    override func loadView() {
+        view = QuotesView()
+    }
 
 }
 

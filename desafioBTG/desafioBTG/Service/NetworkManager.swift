@@ -24,10 +24,10 @@ protocol NetworkManagerProtocol {
 }
 public class NetworkManager: NetworkManagerProtocol {
     
-    func parameters (urlComponents:URLComponents, initials: String? = nil) -> [URLQueryItem]? {
+    func parameters (urlComponents:URLComponents, initials: String? ) -> [URLQueryItem]? {
         var query = [URLQueryItem]()
         
-        if let initials = initials {
+        if let initials = initials { // testar else
             query.append(URLQueryItem(name: "currencies" , value: initials))
         }
         
@@ -48,7 +48,7 @@ public class NetworkManager: NetworkManagerProtocol {
     
     func request<T>(completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
 
-        guard let url = makeURL(endpoint: .list) else {
+        guard let url = makeURL( endpoint: .list) else {
             completion(.failure(NSError()))
             return
         }
