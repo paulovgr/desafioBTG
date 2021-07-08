@@ -13,12 +13,21 @@ class ConversionController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       //  viewModel.setQuotes()
-        // Do any additional setup after loading the view.
+        setupTitle()
     }
 
     override func loadView() {
         view = QuotesView()
+   
     }
 
+}
+
+//fazer funcao
+extension  ConversionController {
+    func setupTitle()  {
+        self.navigationController?.navigationBar.topItem?.title = "Your Title"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
 
