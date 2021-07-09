@@ -10,78 +10,16 @@ import UIKit
 
 class QuotesView: UIView {
     // MARK: - Views
-    //  fazer um botao generico
-    private let startQuotesButton : UIButton = {
-        let button = UIButton(frame: .zero)
-        button.setTitleColor(.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 30)
-        button.backgroundColor = .black
-        button.setTitle("$", for: .normal)
-        button.layer.cornerRadius = 10
-        return button
-    } ()
-    
-    private let convertButton : UIButton = {
-        let button = UIButton(frame: .zero)
-        button.setTitleColor(.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button.backgroundColor = .black
-        button.setTitle("Converter", for: .normal)
-        button.layer.cornerRadius = 10
-        return button
-    } ()
-    
-    private let finalQuotesButton : UIButton = {
-        let button = UIButton(frame: .zero)
-        button.setTitleColor(.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button.backgroundColor = .black
-        button.setTitle("$", for: .normal)
-        button.layer.cornerRadius = 10
-        return button
-    } ()
-    
-    
-    let textField:  UITextField = {
-        let textField = UITextField(frame: .zero)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.borderStyle = .roundedRect
-        textField.layer.borderColor =  UIColor.black.cgColor
-        textField.layer.borderWidth = 1
-        textField.layer.cornerRadius =  10
-        textField.keyboardType  = .decimalPad
-        textField.textAlignment = .right
-        textField.font = UIFont.boldSystemFont(ofSize: 30)
-        return textField
-    }()
-    
-    private let resultLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text  =  "oi"
-        label.textAlignment  =  .center
-        label.textColor =  .black
-        label.font = UIFont.systemFont(ofSize: 30)
-        return label
-    }()
-    
-    private let arrowLabel: UILabel = {
-        let labelConvort = UILabel(frame: .zero)
-        labelConvort.translatesAutoresizingMaskIntoConstraints = false
-        labelConvort.text  =  "→"
-        labelConvort.textAlignment  =  .center
-        labelConvort.textColor =  .black
-        labelConvort.font = UIFont.systemFont(ofSize: 30)
-        return labelConvort
-    }()
+    private let originButton = DesignSystem.setupButton("$")
+    private let convertButton = DesignSystem.setupButton("Converter")
+    private let destinyButton = DesignSystem.setupButton("$")
+    private let textField = DesignSystem.setupTextField()
+    private let resultLabel = DesignSystem.setupLabel("Resultado")
+    private let arrowLabel = DesignSystem.setupLabel("→")
     
     init() {
         super.init(frame: .zero)
         setupViews()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -92,36 +30,34 @@ class QuotesView: UIView {
         print("1" )
     }
     
-    @objc func finalQuotesButtonTapped() {
+    @objc func destinyButtonTap() {
         print("2" )
-
+        
     }
     
-    @objc func listButtonTapped() {
+    @objc func originButtonTap() {
         print("3" )
-
+        
     }
 }
 
 extension QuotesView: ViewCode {
     func setupViewHierarchy() {
-        addSubview(startQuotesButton)
+        addSubview(originButton)
         addSubview(textField)
         addSubview(convertButton)
         addSubview(resultLabel)
         addSubview(arrowLabel)
-        addSubview(finalQuotesButton)
-        
-
+        addSubview(destinyButton)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            startQuotesButton.heightAnchor.constraint(equalTo: textField.heightAnchor, multiplier: 1),
-            startQuotesButton.leadingAnchor.constraint(equalTo: self.textField.leadingAnchor),
-            startQuotesButton.bottomAnchor.constraint(equalTo: self.textField.topAnchor, constant: -12),
-            startQuotesButton.trailingAnchor.constraint(equalTo: self.arrowLabel.leadingAnchor, constant: -11),
-
+            originButton.heightAnchor.constraint(equalTo: textField.heightAnchor, multiplier: 1),
+            originButton.leadingAnchor.constraint(equalTo: self.textField.leadingAnchor),
+            originButton.bottomAnchor.constraint(equalTo: self.textField.topAnchor, constant: -12),
+            originButton.trailingAnchor.constraint(equalTo: self.arrowLabel.leadingAnchor, constant: -11),
+            
         ])
         
         NSLayoutConstraint.activate([
@@ -132,7 +68,7 @@ extension QuotesView: ViewCode {
         ])
         
         NSLayoutConstraint.activate([
-            convertButton.heightAnchor.constraint(equalTo: startQuotesButton.heightAnchor),
+            convertButton.heightAnchor.constraint(equalTo: originButton.heightAnchor),
             convertButton.leadingAnchor.constraint(equalTo: self.textField.leadingAnchor),
             convertButton.topAnchor.constraint(equalTo: self.textField.bottomAnchor, constant: 16),
             convertButton.trailingAnchor.constraint(equalTo: self.textField.trailingAnchor)
@@ -152,18 +88,18 @@ extension QuotesView: ViewCode {
         ])
         
         NSLayoutConstraint.activate([
-            finalQuotesButton.leadingAnchor.constraint(equalTo: self.arrowLabel.trailingAnchor, constant: 11),
-            finalQuotesButton.heightAnchor.constraint(equalTo: textField.heightAnchor, multiplier: 1),
-            finalQuotesButton.trailingAnchor.constraint(equalTo: self.textField.trailingAnchor),
-            finalQuotesButton.bottomAnchor.constraint(equalTo: self.textField.topAnchor, constant: -12),
+            destinyButton.leadingAnchor.constraint(equalTo: self.arrowLabel.trailingAnchor, constant: 11),
+            destinyButton.heightAnchor.constraint(equalTo: textField.heightAnchor, multiplier: 1),
+            destinyButton.trailingAnchor.constraint(equalTo: self.textField.trailingAnchor),
+            destinyButton.bottomAnchor.constraint(equalTo: self.textField.topAnchor, constant: -12),
         ])
         
     }
     
     func setupAditionalConfiguration() {
         convertButton.addTarget(self, action: #selector(convertButtonTapped), for: .touchUpInside)
-        finalQuotesButton.addTarget(self, action: #selector(finalQuotesButtonTapped), for: .touchUpInside)
-        startQuotesButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
+        destinyButton.addTarget(self, action: #selector(destinyButtonTap), for: .touchUpInside)
+        originButton.addTarget(self, action: #selector(originButtonTap), for: .touchUpInside)
     }
     
     
