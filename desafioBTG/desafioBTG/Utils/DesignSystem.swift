@@ -42,6 +42,12 @@ class DesignSystem {
         textField.font = UIFont.boldSystemFont(ofSize: 30)
         return textField
     }
+    
+    static func setupTitle(_ title: String, navegation:  UIViewController){
+        
+        navegation.navigationController?.navigationBar.topItem?.title = title
+        navegation.navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
 
 

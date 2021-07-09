@@ -15,7 +15,6 @@ class CurrenciesTableView: UIView {
     lazy var currenciesTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .systemPink
         tableView.register(CurrenciesTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.delegate = self
@@ -25,39 +24,17 @@ class CurrenciesTableView: UIView {
     init() {
         super.init(frame: .zero)
         setupViews()
-        viewModel.delegate =  self
-        loadCoreData()
+
+        viewModel.loadCoreData()
+
+        self.currencies = viewModel.currencies
         
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func loadCoreData (){
-         
-         // limpando o array para que nao de erro caso essa funcao seja chamada mais de uma vez
-         
-         // buscando o context
-         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-         let context = appDelegate.persistentContainer.viewContext
-         
-         // criando uma requisicao e buscando os dados
-         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Currencie")
-      //   let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
-         
-     //    fetchRequest.sortDescriptors = [sortDescriptor]
-         
-         do {
-             let result = try context.fetch(fetchRequest)
-             for data in result as! [NSManagedObject]{
-                 // adicionando o nome da imagem ao array
-                self.currencies.append(CurrencieModel(data.value(forKey: "value") as! String, data.value(forKey: "key") as! String))
 
-             }
-         } catch {
-             print(error.localizedDescription)
-         }
-     }
 }
 
 extension CurrenciesTableView: UITableViewDelegate{
@@ -66,7 +43,7 @@ extension CurrenciesTableView: UITableViewDelegate{
 
 extension CurrenciesTableView: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currencies.capacity
+        return currencies.count
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -79,10 +56,9 @@ extension CurrenciesTableView: UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CurrenciesTableViewCell
-        let currencie = currencies[indexPath.row]
         cell.setupViews()
-        
-        cell.backgroundColor = .green
+
+        let currencie = currencies[indexPath.item]
         cell.currenciesLabel.text = "\(currencie.key)  = \(currencie.value)"
         return cell
     }
@@ -103,9 +79,4 @@ extension CurrenciesTableView: ViewCode {
     }
     
     
-}
-extension CurrenciesTableView: CurrencyDelegate{
-    func PassCurrencies(currencie: [CurrencieModel]) {
-        currencies = currencie
-    }
 }
