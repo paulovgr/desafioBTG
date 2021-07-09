@@ -13,15 +13,16 @@ class ConversionController: UIViewController, CurrencyDelegate {
     }
     
     let viewModel  = CurrenciesListViewModel()
-    
+    let quotesViewModel  = QuotesViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-
+        quotesViewModel.setQuotes()
         let defaults = UserDefaults.standard
         if !defaults.bool(forKey: "loadData") {
             defaults.set(true, forKey: "loadData")
-            viewModel.setQuotes()
+            viewModel.setCurrencies()
 
         } else {
             PassCurrencies()

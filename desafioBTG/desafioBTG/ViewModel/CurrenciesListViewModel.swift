@@ -18,14 +18,13 @@ class CurrenciesListViewModel   {
     weak var delegate: CurrencyDelegate?
     var currencies  =  [CurrencieModel]()
  
-    var managedObjectContext: NSManagedObjectContext?
 
-    func requestQuote(completion: @escaping (Result<CurrenciesListModel, Error>) -> Void) {
+    func requestCurrencie(completion: @escaping (Result<CurrenciesListModel, Error>) -> Void) {
         service.request(endpoint: .list, completion: completion)
     }
     
-    func setQuotes()  {
-        requestQuote { [self] result in
+    func setCurrencies()  {
+        requestCurrencie { [self] result in
             switch result {
             case .success(let data):
 

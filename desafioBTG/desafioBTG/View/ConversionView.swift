@@ -17,6 +17,10 @@ class ConversionView: UIView {
     private let resultLabel = DesignSystem.setupLabel("Resultado", 30)
     private let arrowLabel = DesignSystem.setupLabel("→", 30)
 
+    
+    func setupLabel (_ text: String){
+        resultLabel.text = text
+    }
     init() {
         super.init(frame: .zero)
         setupViews()

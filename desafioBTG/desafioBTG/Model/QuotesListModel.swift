@@ -8,12 +8,10 @@
 import Foundation
 import UIKit
 
-struct QuotesModel: Decodable {
-    let success:  Bool
+struct QuotesListModel: Decodable {
     let quotes: [String: Double]
     
     enum CodingKeys: String, CodingKey {
-        case success
         case quotes
     }
 }

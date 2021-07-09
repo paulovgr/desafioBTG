@@ -20,14 +20,14 @@ enum Endpoint: String {
 
 
 protocol NetworkManagerProtocol {
-    func request<T: Decodable> (endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void)
+    func request<T: Decodable> (endpoint: Endpoint, initials: String?, completion: @escaping (Result<T, Error>) -> Void)
 }
 public class NetworkManager: NetworkManagerProtocol {
     
     func parameters (urlComponents:URLComponents, initials: String? ) -> [URLQueryItem]? {
         var query = [URLQueryItem]()
         
-        if let initials = initials { // testar else
+        if let initials = initials {
             query.append(URLQueryItem(name: "currencies" , value: initials))
         }
         
@@ -35,19 +35,9 @@ public class NetworkManager: NetworkManagerProtocol {
         return query
     }
     
-    func makeURL(initials: String? = nil, endpoint: Endpoint) -> URL? {
-        var components = URLComponents()
-
-        components.scheme = "http"
-        components.host = "api.currencylayer.com"
-        components.path = "/\(endpoint.rawValue)"
-        components.queryItems = parameters(urlComponents: components, initials: initials)
-
-        return components.url?.absoluteURL
-    }
     
-    func request<T>(endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
-        guard let url = makeURL(endpoint: endpoint) else {
+    func request<T>(endpoint: Endpoint, initials: String? = nil, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
+        guard let url = makeURL(initials: initials, endpoint: endpoint) else {
             completion(.failure(NSError()))
             return
         }
@@ -56,7 +46,6 @@ public class NetworkManager: NetworkManagerProtocol {
             guard let data = data else {
                 return
             }
-            
             do {
                 let response = try JSONDecoder().decode(T.self, from: data)
                 DispatchQueue.main.async {
@@ -69,9 +58,17 @@ public class NetworkManager: NetworkManagerProtocol {
             }
         }
         task.resume()
-        
     }
     
-    
+    func makeURL(initials: String? = nil, endpoint: Endpoint) -> URL? {
+        var components = URLComponents()
+        
+        components.scheme = "http"
+        components.host = "api.currencylayer.com"
+        components.path = "/\(endpoint.rawValue)"
+        components.queryItems = parameters(urlComponents: components, initials: initials)
+        
+        return components.url?.absoluteURL
+    }
     
 }

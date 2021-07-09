@@ -8,11 +8,9 @@
 import Foundation
 
 struct CurrenciesListModel: Decodable {
-    let success:  Bool
     let currencies: [String: String]
     
     enum CodingKeys: String, CodingKey {
-        case success
         case currencies
     }
 }
