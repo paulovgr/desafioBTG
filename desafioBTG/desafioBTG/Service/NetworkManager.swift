@@ -20,7 +20,7 @@ enum Endpoint: String {
 
 
 protocol NetworkManagerProtocol {
-    func request<T: Decodable> (completion: @escaping (Result<T, Error>) -> Void)
+    func request<T: Decodable> (endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void)
 }
 public class NetworkManager: NetworkManagerProtocol {
     
@@ -46,9 +46,8 @@ public class NetworkManager: NetworkManagerProtocol {
         return components.url?.absoluteURL
     }
     
-    func request<T>(completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
-
-        guard let url = makeURL( endpoint: .list) else {
+    func request<T>(endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
+        guard let url = makeURL(endpoint: endpoint) else {
             completion(.failure(NSError()))
             return
         }

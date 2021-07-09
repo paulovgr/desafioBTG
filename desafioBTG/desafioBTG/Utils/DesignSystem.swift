@@ -21,13 +21,13 @@ class DesignSystem {
         return button
     }
     
-    static func setupLabel(_ textLabel: String) -> UILabel{
+    static func setupLabel(_ textLabel: String?, _ textSize: CGFloat) -> UILabel{
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = textLabel
         label.textAlignment  =  .center
         label.textColor =  .black
-        label.font = UIFont.systemFont(ofSize: 30)
+        label.font = UIFont.systemFont(ofSize: textSize)
         return label
     }
     static func setupTextField() -> UITextField {

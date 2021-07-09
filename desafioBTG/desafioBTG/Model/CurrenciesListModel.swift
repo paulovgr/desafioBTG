@@ -16,3 +16,5 @@ struct CurrenciesListModel: Decodable {
         case currencies
     }
 }
+
+

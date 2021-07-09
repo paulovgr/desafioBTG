@@ -8,15 +8,15 @@
 
 import UIKit
 
-class QuotesView: UIView {
+class ConversionView: UIView {
     // MARK: - Views
-    private let originButton = DesignSystem.setupButton("$")
+     let originButton = DesignSystem.setupButton("$")
     private let convertButton = DesignSystem.setupButton("Converter")
     private let destinyButton = DesignSystem.setupButton("$")
     private let textField = DesignSystem.setupTextField()
-    private let resultLabel = DesignSystem.setupLabel("Resultado")
-    private let arrowLabel = DesignSystem.setupLabel("→")
-    
+    private let resultLabel = DesignSystem.setupLabel("Resultado", 30)
+    private let arrowLabel = DesignSystem.setupLabel("→", 30)
+
     init() {
         super.init(frame: .zero)
         setupViews()
@@ -27,7 +27,8 @@ class QuotesView: UIView {
     }
     
     @objc func convertButtonTapped() {
-        print("1" )
+        print("oi" )
+
     }
     
     @objc func destinyButtonTap() {
@@ -39,9 +40,15 @@ class QuotesView: UIView {
         print("3" )
         
     }
+    
+     func buttom() {
+        convertButton.addTarget(self, action: #selector(convertButtonTapped), for: .touchUpInside)
+        destinyButton.addTarget(self, action: #selector(destinyButtonTap), for: .touchUpInside)
+        originButton.addTarget(self, action: #selector(originButtonTap), for: .touchUpInside)
+    }
 }
 
-extension QuotesView: ViewCode {
+extension ConversionView: ViewCode {
     func setupViewHierarchy() {
         addSubview(originButton)
         addSubview(textField)
@@ -96,10 +103,10 @@ extension QuotesView: ViewCode {
         
     }
     
+
+    
     func setupAditionalConfiguration() {
-        convertButton.addTarget(self, action: #selector(convertButtonTapped), for: .touchUpInside)
-        destinyButton.addTarget(self, action: #selector(destinyButtonTap), for: .touchUpInside)
-        originButton.addTarget(self, action: #selector(originButtonTap), for: .touchUpInside)
+        buttom()
     }
     
     
