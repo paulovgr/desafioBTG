@@ -126,15 +126,20 @@ extension ConversionViewController {
     }
     
     private func showResult(originQuote: QuoteModel, destinyQuote: QuoteModel) {
-        guard let userInput = Double(conversionView.getTextField()) else{
-            return
+        if let userInput = Double(conversionView.getTextField()) {
+            let result = quotesViewModel.convertValue(from: originQuote.value, to: destinyQuote.value, value: userInput)
+            conversionView.setText("De \(originQuote.key) " +
+                                    "Para: \(destinyQuote.key) " +
+                                    "= \(String(format: "%.2f", result))")
+            conversionView.colorTextField(.black)
+
+        } else {
+            conversionView.setText("Insira um valor")
+            conversionView.colorTextField(.red)
         }
-        let result = quotesViewModel.convertValue(from: originQuote.value, to: destinyQuote.value, value: userInput)
         
         
-        conversionView.setText("De \(originQuote.key) " +
-                                "Para: \(destinyQuote.key) " +
-                                "= \(String(format: "%.2f", result))")
+        
     }
 }
 

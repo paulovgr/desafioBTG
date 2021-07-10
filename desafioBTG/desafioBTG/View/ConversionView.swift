@@ -16,7 +16,7 @@ class ConversionView: UIView {
     private let textField = DesignSystem.setupTextField()
     private let resultLabel = DesignSystem.setupLabel("Resultado", 30)
     private let arrowLabel = DesignSystem.setupLabel("→", 30)
-
+    
     init() {
         super.init(frame: .zero)
         setupViews()
@@ -33,13 +33,13 @@ class ConversionView: UIView {
     func getTextField () -> String {
         if let text = textField.text  { return text }
         else {
-            return "oi"
+            return ""
         }
     }
     
-    
-    
-    
+    func colorTextField (_ color: UIColor)  {
+        textField.layer.borderColor =  color.cgColor
+    }
 }
 
 extension ConversionView: ViewCode {
@@ -95,14 +95,14 @@ extension ConversionView: ViewCode {
             destinyButton.bottomAnchor.constraint(equalTo: self.textField.topAnchor, constant: -12),
         ])
         
- 
+        
         
     }
     
-
+    
     func setupAditionalConfiguration() {
         resultLabel.adjustsFontSizeToFitWidth = true
     }
- 
+    
     
 }
