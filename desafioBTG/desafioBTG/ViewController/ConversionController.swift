@@ -43,7 +43,9 @@ class ConversionController: UIViewController, CurrencyDelegate, MessageDelegate{
         if !UserDefaults.standard.bool(forKey: "loadData") {
             viewModel.setCurrencies()
             
-        } 
+        }
+        
+        print(quotesViewModel.convertValue(from: 0.7224, to: 0.843))
         DesignSystem.setupTitle("Conversão", navegation: self)
     }
     

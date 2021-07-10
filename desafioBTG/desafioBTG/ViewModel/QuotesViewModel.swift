@@ -43,7 +43,13 @@ class QuotesViewModel   {
     }
     
     func convertValue(from: Double, to: Double) -> Double{
-        return from/to
+        
+        if from == 1 {
+            return to
+        } else {
+            return to/from
+        }
+        
     }
     
     func saveQuotesCoreData(_ quotesArray: QuoteModel){
