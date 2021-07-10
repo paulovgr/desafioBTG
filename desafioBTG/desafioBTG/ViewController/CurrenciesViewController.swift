@@ -25,10 +25,7 @@ class CurrenciesViewController: UIViewController {
         }
         UserDefaults.standard.set(data.key, forKey: buttonSeleted + "Key")
         UserDefaults.standard.set(data.value, forKey: buttonSeleted + "Value")
-
-       // print(viewTable.quote)
-       // print(buttonSeleted)
-        delegate?.PassQuote(viewTable.quote)
+  
         
     }
 

@@ -17,11 +17,11 @@ class QuotesListViewModel   {
         service.request(endpoint: .live , completion: completion)
     }
     
-    func convertValue(from: Double, to: Double) -> Double{
+    func convertValue(from: Double, to: Double, value: Double) -> Double{
         if from == 1 {
-            return to
+            return to * value
         } else {
-            return to/from
+            return to/from * value
         }
     }
 }

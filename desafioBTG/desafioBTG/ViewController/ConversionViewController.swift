@@ -15,55 +15,33 @@ class ConversionViewController: UIViewController,QuoteDelegate {
     
     private let viewModel  = CurrenciesListViewModel()
     private let quotesViewModel = QuotesListViewModel()
-    let controllere = CurrenciesViewController()
-    let conversionView = ConversionView()
-
-//    var convertQuote : QuoteModel?
-//    var destinyQuote : QuoteModel?
+    private let conversionView = ConversionView()
+    
+    private var originQuote: QuoteModel?
+    private var destinyQuote: QuoteModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
         viewModel.delegateError = self
         setupViewModels()
-        controllere.delegate = self
         
         DesignSystem.setupTitle("Conversão", navegation: self)
-     //   print(quotesViewModel.convertValue(from: 0.7224, to: 0.843))
     }
-
+    
     override func loadView() {
         view = conversionView
         setupButtonActions(conversionView)
     }
     
-
+    
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
-        let userDefault = UserDefaults.standard
-        guard let data = userDefault.string(forKey: "destinyButtonKey") else   {
-return
-
-
-        }
+        setupViewComponents()
         
-        let moeda = QuoteModel(userDefault.double(forKey: "destinyButtonValue"),
-                               Utils.removeCaracters(word: data, num: 3))
-        conversionView.destinyButton.setTitle(moeda.key, for: .normal)
-        
-        guard let data2 = userDefault.string(forKey: "originButtonKey")  else {
-           return
-
-        }
-        let moeda2 = QuoteModel(userDefault.double(forKey: "originButtonKey"),
-                               Utils.removeCaracters(word: data2, num: 3))
-        conversionView.originButton.setTitle(moeda2.key, for: .normal)
-        
-        print(moeda2)
-        print(moeda)
-        print(quotesViewModel.convertValue(from: moeda.value, to: moeda2.value))
-        conversionView.setText("De \(moeda2.key) Para: \(moeda.key) = \(quotesViewModel.convertValue(from: moeda2.value, to: moeda.value))")
-
     }
     
 }
@@ -87,6 +65,13 @@ extension ConversionViewController {
         conversionView.originButton.addTarget(self, action: #selector(originButtonTap), for: .touchUpInside)
     }
     
+    
+    private func setupViewComponents() {
+        conversionView.destinyButton.setTitle(setupDestinyModel().key, for: .normal)
+        conversionView.originButton.setTitle(setupOriginModel().key, for: .normal)
+        conversionView.setText("")
+    }
+    
     private func setupViewModels() {
         quotesViewModel.setQuotes()
         if !UserDefaults.standard.bool(forKey: "loadData") {
@@ -95,6 +80,7 @@ extension ConversionViewController {
     }
     
     @objc func convertButtonTapped() {
+        showResult(originQuote: setupOriginModel(), destinyQuote: setupDestinyModel())
         
     }
     
@@ -109,6 +95,46 @@ extension ConversionViewController {
         let view = CurrenciesViewController()
         view.buttonSeleted = "originButton"
         self.navigationController?.pushViewController(view, animated: true)
+    }
+    
+    private func setupOriginModel () -> QuoteModel{
+        let userDefault = UserDefaults.standard
+        
+        
+        if let key = userDefault.string(forKey: "originButtonKey")    {
+            originQuote = QuoteModel(userDefault.double(forKey: "originButtonValue"),
+                                     Utils.removeCaracters(word: key, num: 3))
+            
+        }
+        
+        guard let originQuote = originQuote else { return QuoteModel(0, "") }
+        return originQuote
+        
+    }
+    
+    private func setupDestinyModel () -> QuoteModel {
+        let userDefault = UserDefaults.standard
+        
+        
+        if let key = userDefault.string(forKey: "destinyButtonKey") {
+            destinyQuote = QuoteModel(userDefault.double(forKey: "destinyButtonValue"),
+                                      Utils.removeCaracters(word: key, num: 3))
+        }
+        
+        guard let destinyQuote = destinyQuote else { return QuoteModel(0, "") }
+        return destinyQuote
+    }
+    
+    private func showResult(originQuote: QuoteModel, destinyQuote: QuoteModel) {
+        guard let userInput = Double(conversionView.getTextField()) else{
+            return
+        }
+        let result = quotesViewModel.convertValue(from: originQuote.value, to: destinyQuote.value, value: userInput)
+        
+        
+        conversionView.setText("De \(originQuote.key) " +
+                                "Para: \(destinyQuote.key) " +
+                                "= \(result)")
     }
 }
 

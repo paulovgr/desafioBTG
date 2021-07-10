@@ -30,6 +30,13 @@ class ConversionView: UIView {
         self.resultLabel.text = text
     }
     
+    func getTextField () -> String {
+        if let text = textField.text  { return text }
+        else {
+            return "oi"
+        }
+    }
+    
     
     
     
@@ -88,10 +95,14 @@ extension ConversionView: ViewCode {
             destinyButton.bottomAnchor.constraint(equalTo: self.textField.topAnchor, constant: -12),
         ])
         
+ 
+        
     }
     
 
-    
+    func setupAditionalConfiguration() {
+        resultLabel.adjustsFontSizeToFitWidth = true
+    }
  
     
 }

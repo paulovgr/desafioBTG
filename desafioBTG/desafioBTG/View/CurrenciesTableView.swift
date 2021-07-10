@@ -49,9 +49,7 @@ class CurrenciesTableView: UIView {
 
 extension CurrenciesTableView: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         quote = quotesViewModel.quotes[indexPath.row]
-      
     }
 }
 
