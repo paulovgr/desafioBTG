@@ -8,8 +8,11 @@
 import UIKit
 import  CoreData
 class CurrenciesTableView: UIView {
-    let viewModel  = CurrenciesListViewModel()
-    var currencies  =  [CurrencieModel]()
+    weak var delegate: QuoteDelegate?
+
+    let currencyViewModel  = CurrenciesListViewModel()
+    var currencies  =  [CurrencyModel]()
+    let quotesViewModel  = QuotesViewModel()
 
     // MARK: - Views
     lazy var currenciesTableView: UITableView = {
@@ -24,10 +27,8 @@ class CurrenciesTableView: UIView {
     init() {
         super.init(frame: .zero)
         setupViews()
-
-        viewModel.loadCoreData()
-
-        self.currencies = viewModel.currencies
+        currencyViewModel.loadCoreData()
+        self.currencies = currencyViewModel.currencies
         
     }
     
@@ -38,7 +39,13 @@ class CurrenciesTableView: UIView {
 }
 
 extension CurrenciesTableView: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        quotesViewModel.setQuotes(initials: currencies[indexPath.item].key)
+        DispatchQueue.main.async {
+            print(self.quotesViewModel.selectedCurrencies)
 
+        }
+    }
 }
 
 extension CurrenciesTableView: UITableViewDataSource{

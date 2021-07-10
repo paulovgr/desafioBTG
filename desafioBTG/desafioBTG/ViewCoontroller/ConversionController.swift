@@ -7,38 +7,56 @@
 
 import UIKit
 
-class ConversionController: UIViewController, CurrencyDelegate {
+class ConversionController: UIViewController, CurrencyDelegate{
+
+    
     func PassCurrencies() {
-        self.navigationController?.pushViewController(CurrenciesViewController(), animated: true)
+        print("oi")
     }
     
     let viewModel  = CurrenciesListViewModel()
-    let quotesViewModel  = QuotesViewModel()
+    let quotesViewModel = QuotesViewModel()
+    var convertQuote : QuoteModel?
+    var destinyQuote : QuoteModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-        quotesViewModel.setQuotes()
         let defaults = UserDefaults.standard
         if !defaults.bool(forKey: "loadData") {
             defaults.set(true, forKey: "loadData")
-            viewModel.setCurrencies()
-
-        } else {
-            PassCurrencies()
-
-        }
+            viewModel.setCurrency()
+            
+        } 
         DesignSystem.setupTitle("Conversão", navegation: self)
+    }
     
-    }
-
     override func loadView() {
-        view = ConversionView()
+        let conversionView = ConversionView()
+        view = conversionView
+        conversionView.convertButton.addTarget(self, action: #selector(convertButtonTapped), for: .touchUpInside)
+        conversionView.destinyButton.addTarget(self, action: #selector(destinyButtonTap), for: .touchUpInside)
+        conversionView.originButton.addTarget(self, action: #selector(originButtonTap), for: .touchUpInside)
+        
+        
     }
+    @objc func convertButtonTapped() {
+        print(quotesViewModel.selectedCurrencies)
 
+    }
+    
+    @objc func destinyButtonTap() {
+        self.navigationController?.pushViewController(CurrenciesViewController(), animated: true)
+        
+    }
+    
+    @objc func originButtonTap() {
+        self.navigationController?.pushViewController(CurrenciesViewController(), animated: true)
+  
+    }
+    
 }
 
-//fazer funcao
 extension ConversionController {
     func setupTitle(_ title: String)  {
         self.navigationController?.navigationBar.topItem?.title = title

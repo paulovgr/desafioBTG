@@ -6,27 +6,38 @@
 //
 
 import Foundation
+protocol QuoteDelegate: AnyObject {
+    func PassQuote(_ value: Double)
+    
+}
 
 class QuotesViewModel   {
     private var service = NetworkManager()
-    
-    func requestQuote(completion: @escaping (Result<QuotesListModel, Error>) -> Void) {
-        service.request(endpoint: .live, initials: "USD" , completion: completion)
+    var selectedCurrencies  = Double()
+
+    func requestQuote(initials: String, completion: @escaping (Result<QuotesListModel, Error>) -> Void) {
+        service.request(endpoint: .live, initials: initials , completion: completion)
     }
     
-    func setQuotes()  {
-        requestQuote { [self] result in
+    func setQuotes(initials: String)  {
+        requestQuote(initials: initials) { [self] result in
             switch result {
             case .success(let data):
 
-                    print(data)
-               
-                
-            case .failure(let anError):
-                print(anError)
+                let datas = Array(data.quotes.map{$0})
+                for data in datas {
+                    selectedCurrencies = data.value
+                }
+                                
+            case .failure(_):
+                setQuotes(initials: initials)
 
             }
         }
+    }
+    
+    func convertValue(from: Double, to: Double) -> Double{
+        return from/to
     }
 }
 

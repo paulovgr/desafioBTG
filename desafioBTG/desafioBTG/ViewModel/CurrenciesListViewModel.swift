@@ -13,11 +13,11 @@ protocol CurrencyDelegate: AnyObject {
     func PassCurrencies()
 }
 
+
 class CurrenciesListViewModel   {
     private var service = NetworkManager()
     weak var delegate: CurrencyDelegate?
-    var currencies  =  [CurrencieModel]()
- 
+    var currencies  =  [CurrencyModel]()
 
     func requestCurrencie(completion: @escaping (Result<CurrenciesListModel, Error>) -> Void) {
         service.request(endpoint: .list, completion: completion)
@@ -30,7 +30,7 @@ class CurrenciesListViewModel   {
 
                     let datas = Array(data.currencies.map{$0})
                     for data in datas {
-                        saveCurrenciesCoreData(CurrencieModel(data.value, data.key))
+                        saveCurrenciesCoreData(CurrencyModel(data.value, data.key))
                     }
                     delegate?.PassCurrencies()
                
@@ -42,23 +42,20 @@ class CurrenciesListViewModel   {
         }
     }
     
-    func saveCurrenciesCoreData(_ currenciesArray: CurrencieModel){
+    func saveCurrenciesCoreData(_ currenciesArray: CurrencyModel){
          
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
             return
         }
         let context = appDelegate.persistentContainer.viewContext
-         let userEntity = NSEntityDescription.entity(forEntityName: "Currencie", in: context)!
-         let imagemN = NSManagedObject(entity: userEntity, insertInto: context)
-        imagemN.setValue(currenciesArray.value, forKey: "value")
-        imagemN.setValue(currenciesArray.key, forKey: "key")
+         let userEntity = NSEntityDescription.entity(forEntityName: "Currency", in: context)!
+         let dara = NSManagedObject(entity: userEntity, insertInto: context)
+        dara.setValue(currenciesArray.value, forKey: "value")
+        dara.setValue(currenciesArray.key, forKey: "key")
 
-         
          do{
-             //persistindo as mudanças
              try context.save()
          }catch{
-             //printando o erro caso nao consiga salvar
              print(error.localizedDescription)
          }
          
@@ -75,9 +72,12 @@ class CurrenciesListViewModel   {
          do {
              let result = try context.fetch(fetchRequest)
              for data in result as! [NSManagedObject]{
-                self.currencies.append(CurrencieModel(data.value(forKey: "value") as! String, data.value(forKey: "key") as! String))
+                self.currencies.append(CurrencyModel(data.value(forKey: "value") as! String, data.value(forKey: "key") as! String))
 
              }
+            self.currencies.sort{
+                $0.value < $1.value
+            }
             
          } catch {
              print(error.localizedDescription)

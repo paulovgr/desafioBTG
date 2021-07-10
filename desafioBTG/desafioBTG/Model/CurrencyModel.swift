@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrencieModel {
+struct CurrencyModel {
     var value = String()
     var key = String()
     

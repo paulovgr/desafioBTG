@@ -11,8 +11,8 @@ import UIKit
 class ConversionView: UIView {
     // MARK: - Views
      let originButton = DesignSystem.setupButton("$")
-    private let convertButton = DesignSystem.setupButton("Converter")
-    private let destinyButton = DesignSystem.setupButton("$")
+     let convertButton = DesignSystem.setupButton("Converter")
+     let destinyButton = DesignSystem.setupButton("$")
     private let textField = DesignSystem.setupTextField()
     private let resultLabel = DesignSystem.setupLabel("Resultado", 30)
     private let arrowLabel = DesignSystem.setupLabel("→", 30)
@@ -30,26 +30,11 @@ class ConversionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func convertButtonTapped() {
-        print("oi" )
+    
 
-    }
     
-    @objc func destinyButtonTap() {
-        print("2" )
-        
-    }
-    
-    @objc func originButtonTap() {
-        print("3" )
-        
-    }
-    
-     func buttom() {
-        convertButton.addTarget(self, action: #selector(convertButtonTapped), for: .touchUpInside)
-        destinyButton.addTarget(self, action: #selector(destinyButtonTap), for: .touchUpInside)
-        originButton.addTarget(self, action: #selector(originButtonTap), for: .touchUpInside)
-    }
+  
+  
 }
 
 extension ConversionView: ViewCode {
@@ -109,9 +94,6 @@ extension ConversionView: ViewCode {
     
 
     
-    func setupAditionalConfiguration() {
-        buttom()
-    }
-    
+ 
     
 }
