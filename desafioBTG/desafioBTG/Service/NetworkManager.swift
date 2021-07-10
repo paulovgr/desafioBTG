@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Network
 
 
 enum NetworkError:  Error {
@@ -18,26 +19,40 @@ enum Endpoint: String {
     case list
 }
 
-
+protocol MessageDelegate: AnyObject {
+    func showMessage ()
+}
 protocol NetworkManagerProtocol {
-    func request<T: Decodable> (endpoint: Endpoint, initials: String?, completion: @escaping (Result<T, Error>) -> Void)
+    func request<T: Decodable> (endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void)
 }
 public class NetworkManager: NetworkManagerProtocol {
-    
-    func parameters (urlComponents:URLComponents, initials: String? ) -> [URLQueryItem]? {
+    weak var delegateError: MessageDelegate?
+
+    func parameters (urlComponents:URLComponents ) -> [URLQueryItem]? {
         var query = [URLQueryItem]()
-        
-        if let initials = initials {
-            query.append(URLQueryItem(name: "currencies" , value: initials))
-        }
         
         query.append(URLQueryItem(name: "access_key", value: "3bdda02ece03a789028d549bb36adadd"))
         return query
     }
     
     
-    func request<T>(endpoint: Endpoint, initials: String? = nil, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
-        guard let url = makeURL(initials: initials, endpoint: endpoint) else {
+    func request<T>(endpoint: Endpoint,  completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
+        
+        let monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("We're connected!")
+            } else {
+                self.delegateError?.showMessage()
+            }
+
+            print(path.isExpensive)
+        }
+        
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+        
+        guard let url = makeURL( endpoint: endpoint) else {
             completion(.failure(NSError()))
             return
         }
@@ -54,19 +69,20 @@ public class NetworkManager: NetworkManagerProtocol {
             } catch {
                 DispatchQueue.main.async {
                     completion(.failure(NSError()))
+
                 }
             }
         }
         task.resume()
     }
     
-    func makeURL(initials: String? = nil, endpoint: Endpoint) -> URL? {
+    func makeURL( endpoint: Endpoint) -> URL? {
         var components = URLComponents()
         
         components.scheme = "http"
         components.host = "api.currencylayer.com"
         components.path = "/\(endpoint.rawValue)"
-        components.queryItems = parameters(urlComponents: components, initials: initials)
+        components.queryItems = parameters(urlComponents: components)
         
         return components.url?.absoluteURL
     }

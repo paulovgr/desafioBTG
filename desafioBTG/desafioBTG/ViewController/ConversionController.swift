@@ -7,8 +7,23 @@
 
 import UIKit
 
-class ConversionController: UIViewController, CurrencyDelegate{
 
+class ConversionController: UIViewController, CurrencyDelegate, MessageDelegate{
+    fileprivate func setupAlert(title: String, message: String, viewController: UIViewController) {
+        DispatchQueue.main.async {
+            
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            
+            viewController.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showMessage() {
+        setupAlert(title: "ERRO" , message: "Falha na conexão", viewController: self)
+    }
+    
+    
     
     func PassCurrencies() {
         print("oi")
@@ -22,9 +37,10 @@ class ConversionController: UIViewController, CurrencyDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-        let defaults = UserDefaults.standard
-        if !defaults.bool(forKey: "loadData") {
-            defaults.set(true, forKey: "loadData")
+        viewModel.delegateError = self
+        quotesViewModel.setQuotes()
+        
+        if !UserDefaults.standard.bool(forKey: "loadData") {
             viewModel.setCurrencies()
             
         } 

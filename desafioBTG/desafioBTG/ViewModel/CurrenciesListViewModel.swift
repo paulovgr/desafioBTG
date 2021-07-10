@@ -14,9 +14,18 @@ protocol CurrencyDelegate: AnyObject {
 }
 
 
-class CurrenciesListViewModel   {
+class CurrenciesListViewModel: MessageDelegate   {
+    func showMessage() {
+        delegateError?.showMessage()
+    }
+    init() {
+        service.delegateError = self
+    }
+    
     private var service = NetworkManager()
     weak var delegate: CurrencyDelegate?
+    var delegateError: MessageDelegate?
+
     var currencies  =  [CurrencyModel]()
 
     func requestCurrencie(completion: @escaping (Result<CurrenciesListModel, Error>) -> Void) {
@@ -32,6 +41,8 @@ class CurrenciesListViewModel   {
                     for data in datas {
                         saveCurrenciesCoreData(CurrencyModel(data.value, data.key))
                     }
+                UserDefaults.standard.set(true, forKey: "loadData")
+
                     delegate?.PassCurrencies()
                
                 

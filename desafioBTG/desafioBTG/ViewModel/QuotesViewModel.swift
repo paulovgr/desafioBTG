@@ -53,11 +53,14 @@ class QuotesViewModel   {
         let context = appDelegate.persistentContainer.viewContext
          let userEntity = NSEntityDescription.entity(forEntityName: "Quote", in: context)!
          let dara = NSManagedObject(entity: userEntity, insertInto: context)
+        
         dara.setValue(quotesArray.value, forKey: "value")
         dara.setValue(quotesArray.key, forKey: "key")
 
          do{
              try context.save()
+            
+
          }catch{
              print(error.localizedDescription)
          }
@@ -75,7 +78,6 @@ class QuotesViewModel   {
             }
             do{
                 try context.save()
-                print("saved")
             }catch let error as NSError {
                 print("Could not save \(error), \(error.userInfo)")
             }
@@ -87,7 +89,7 @@ class QuotesViewModel   {
          let context = appDelegate.persistentContainer.viewContext
          
 
-         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Currency")
+         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Quote")
 
          
          do {

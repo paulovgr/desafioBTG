@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let controller = ConversionController()
         let navigation = UINavigationController(rootViewController: controller)
-
+        window?.overrideUserInterfaceStyle = .light
         window?.rootViewController = navigation
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()

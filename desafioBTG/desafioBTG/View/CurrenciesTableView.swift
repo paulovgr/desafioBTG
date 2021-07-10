@@ -13,7 +13,7 @@ class CurrenciesTableView: UIView {
     let currencyViewModel  = CurrenciesListViewModel()
     var currencies  =  [CurrencyModel]()
     let quotesViewModel  = QuotesViewModel()
-
+    var num : QuoteModel?
     // MARK: - Views
     lazy var currenciesTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -28,9 +28,12 @@ class CurrenciesTableView: UIView {
         super.init(frame: .zero)
         setupViews()
         currencyViewModel.loadCoreData()
+        quotesViewModel.loadCoreData()
+
         self.currencies = currencyViewModel.currencies
         
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -40,13 +43,8 @@ class CurrenciesTableView: UIView {
 
 extension CurrenciesTableView: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        quotesViewModel.setQuotes()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)  { [self] in
-
-            print(self.quotesViewModel.selectedCurrencies)
-
-        }
+        num = quotesViewModel.quotes[indexPath.row]
+        print(self.quotesViewModel.selectedCurrencies)
     }
 }
 
