@@ -26,6 +26,13 @@ class ConversionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setText (_ text:String) {
+        self.resultLabel.text = text
+    }
+    
+    
+    
+    
 }
 
 extension ConversionView: ViewCode {

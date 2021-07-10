@@ -11,7 +11,7 @@ protocol CurrencyDelegate: AnyObject {
 }
 
 protocol QuoteDelegate: AnyObject {
-    func PassQuote(_ value: Double)
+    func PassQuote(_ value: Any)
 }
 
 protocol MessageDelegate: AnyObject {

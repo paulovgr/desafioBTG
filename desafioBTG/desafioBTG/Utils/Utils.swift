@@ -19,4 +19,12 @@ class Utils {
             viewController.present(alert, animated: true, completion: nil)
         }
     }
+    
+    static func removeCaracters(word: String, num: Int) -> String {
+       var word = word
+       while word.count != num {
+           word.remove(at: word.index(word.startIndex, offsetBy: 0))
+       }
+       return word
+   }
 }

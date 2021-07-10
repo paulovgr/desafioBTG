@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 
 class DesignSystem {
+    static let starOn = "★"
+    static let starOff = "☆"
     
-    static func setupButton(_ textLabel: String) -> UIButton{
+    static func setupButton(_ textLabel:String? = nil) -> UIButton{
         let button = UIButton(frame: .zero)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false

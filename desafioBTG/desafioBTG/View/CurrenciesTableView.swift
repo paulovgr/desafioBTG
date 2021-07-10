@@ -7,12 +7,14 @@
 
 import UIKit
 import  CoreData
+
+
 class CurrenciesTableView: UIView {
     private let currencyViewModel  = CurrenciesListViewModel()
     private let quotesViewModel  = QuotesListViewModel()
     var currencies  =  [CurrencyModel]()
     weak var delegate: QuoteDelegate?
-
+    var quote: QuoteModel?
     
     // MARK: - Views
     lazy var currenciesTableView: UITableView = {
@@ -26,12 +28,18 @@ class CurrenciesTableView: UIView {
     
     init() {
         super.init(frame: .zero)
-        self.currencies = currencyViewModel.currencies
+        
         setupViews()
         currencyViewModel.loadCurrenciesCoreData()
-        quotesViewModel.loadCoreData()    
+        quotesViewModel.loadCoreData()
+        self.currencies = currencyViewModel.currencies
+
     }
     
+    @objc func buttonSelected(sender: UIButton) {
+    var buttonNumber = sender.tag
+    print(buttonNumber)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -41,7 +49,9 @@ class CurrenciesTableView: UIView {
 
 extension CurrenciesTableView: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        debugPrint(quotesViewModel.quotes[indexPath.row])
+
+        quote = quotesViewModel.quotes[indexPath.row]
+      
     }
 }
 
@@ -61,8 +71,11 @@ extension CurrenciesTableView: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CurrenciesTableViewCell
         cell.setupViews()
-        
+        cell.favoriteButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+        cell.favoriteButton.tag = indexPath.row
         let currencie = currencies[indexPath.item]
+//        cell.favoriteButton.setTitle(DesignSystem.starOn, for: .selected)
+
         cell.currenciesLabel.text = "\(currencie.key) - \(currencie.value)"
         return cell
     }

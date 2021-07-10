@@ -44,8 +44,8 @@ extension CurrenciesListViewModel{
                 
                 UserDefaults.standard.set(true, forKey: "loadData")
                 delegate?.PassCurrencies()
-            case .failure(let anError):
-                print(anError)
+            case .failure(_):
+                setCurrencies()
             }
         }
     }
@@ -86,6 +86,7 @@ extension CurrenciesListViewModel{
             self.currencies.sort {
                 $0.key < $1.key
             }
+            
         } catch {
             print(error.localizedDescription)
         }
