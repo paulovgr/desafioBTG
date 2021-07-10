@@ -134,7 +134,7 @@ extension ConversionViewController {
         
         conversionView.setText("De \(originQuote.key) " +
                                 "Para: \(destinyQuote.key) " +
-                                "= \(result)")
+                                "= \(String(format: "%.2f", result))")
     }
 }
 
