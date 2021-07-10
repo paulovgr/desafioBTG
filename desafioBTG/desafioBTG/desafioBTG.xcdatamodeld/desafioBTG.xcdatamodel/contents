@@ -7,7 +7,7 @@
     </entity>
     <entity name="Quote" representedClassName="Quote" syncable="YES" codeGenerationType="class">
         <attribute name="key" optional="YES" attributeType="String"/>
-        <attribute name="value" optional="YES" attributeType="String"/>
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="Currency" positionX="-45" positionY="0" width="128" height="74"/>

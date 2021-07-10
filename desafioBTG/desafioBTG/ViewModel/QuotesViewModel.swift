@@ -28,6 +28,8 @@ class QuotesViewModel   {
             case .success(let data):
                 DispatchQueue.main.async {
                     let datas = Array(data.quotes.map{$0})
+                    deleteData()
+
                     for data in datas {
                         saveQuotesCoreData(QuoteModel(data.value, data.key))
                     }
@@ -45,12 +47,11 @@ class QuotesViewModel   {
     }
     
     func saveQuotesCoreData(_ quotesArray: QuoteModel){
-         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
             return
         }
         let context = appDelegate.persistentContainer.viewContext
-         let userEntity = NSEntityDescription.entity(forEntityName: "Currency", in: context)!
+         let userEntity = NSEntityDescription.entity(forEntityName: "Quote", in: context)!
          let dara = NSManagedObject(entity: userEntity, insertInto: context)
         dara.setValue(quotesArray.value, forKey: "value")
         dara.setValue(quotesArray.key, forKey: "key")
@@ -66,7 +67,7 @@ class QuotesViewModel   {
              // data is entity name
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Currency")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Quote")
             if  let result = try?  context.fetch(fetchRequest){
                 for object in result {
                     context.delete(object as! NSManagedObject)
