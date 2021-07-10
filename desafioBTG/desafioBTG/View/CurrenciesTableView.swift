@@ -8,12 +8,12 @@
 import UIKit
 import  CoreData
 class CurrenciesTableView: UIView {
+    private let currencyViewModel  = CurrenciesListViewModel()
+    private let quotesViewModel  = QuotesListViewModel()
+    var currencies  =  [CurrencyModel]()
     weak var delegate: QuoteDelegate?
 
-    let currencyViewModel  = CurrenciesListViewModel()
-    var currencies  =  [CurrencyModel]()
-    let quotesViewModel  = QuotesViewModel()
-    var num : QuoteModel?
+    
     // MARK: - Views
     lazy var currenciesTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -26,12 +26,10 @@ class CurrenciesTableView: UIView {
     
     init() {
         super.init(frame: .zero)
-        setupViews()
-        currencyViewModel.loadCoreData()
-        quotesViewModel.loadCoreData()
-
         self.currencies = currencyViewModel.currencies
-        
+        setupViews()
+        currencyViewModel.loadCurrenciesCoreData()
+        quotesViewModel.loadCoreData()    
     }
     
     
@@ -43,8 +41,7 @@ class CurrenciesTableView: UIView {
 
 extension CurrenciesTableView: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        num = quotesViewModel.quotes[indexPath.row]
-        print(self.quotesViewModel.selectedCurrencies)
+        debugPrint(quotesViewModel.quotes[indexPath.row])
     }
 }
 
@@ -64,9 +61,9 @@ extension CurrenciesTableView: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CurrenciesTableViewCell
         cell.setupViews()
-
+        
         let currencie = currencies[indexPath.item]
-        cell.currenciesLabel.text = "\(currencie.key)  = \(currencie.value)"
+        cell.currenciesLabel.text = "\(currencie.key) - \(currencie.value)"
         return cell
     }
 }

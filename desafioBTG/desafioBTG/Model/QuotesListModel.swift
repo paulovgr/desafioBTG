@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct QuotesListModel: Decodable {
-    let  source: String
+    let source: String
     let quotes: [String: Double]
     
     enum CodingKeys: String, CodingKey {

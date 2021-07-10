@@ -30,6 +30,7 @@ class DesignSystem {
         label.font = UIFont.systemFont(ofSize: textSize)
         return label
     }
+    
     static func setupTextField() -> UITextField {
         let textField = UITextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +45,6 @@ class DesignSystem {
     }
     
     static func setupTitle(_ title: String, navegation:  UIViewController){
-        
         navegation.navigationController?.navigationBar.topItem?.title = title
         navegation.navigationController?.navigationBar.prefersLargeTitles = true
     }

@@ -10,17 +10,13 @@ import UIKit
 
 class ConversionView: UIView {
     // MARK: - Views
-     let originButton = DesignSystem.setupButton("$")
-     let convertButton = DesignSystem.setupButton("Converter")
-     let destinyButton = DesignSystem.setupButton("$")
+    let originButton = DesignSystem.setupButton("$")
+    let convertButton = DesignSystem.setupButton("Converter")
+    let destinyButton = DesignSystem.setupButton("$")
     private let textField = DesignSystem.setupTextField()
     private let resultLabel = DesignSystem.setupLabel("Resultado", 30)
     private let arrowLabel = DesignSystem.setupLabel("→", 30)
 
-    
-    func setupLabel (_ text: String){
-        resultLabel.text = text
-    }
     init() {
         super.init(frame: .zero)
         setupViews()
@@ -30,11 +26,6 @@ class ConversionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-
-    
-  
-  
 }
 
 extension ConversionView: ViewCode {

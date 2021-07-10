@@ -9,48 +9,17 @@ import Foundation
 import UIKit
 import Network
 
-
-enum NetworkError:  Error {
-    case error(Error)
-}
-
 enum Endpoint: String {
     case live
     case list
 }
 
-protocol MessageDelegate: AnyObject {
-    func showMessage ()
-}
-protocol NetworkManagerProtocol {
-    func request<T: Decodable> (endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void)
-}
 public class NetworkManager: NetworkManagerProtocol {
     weak var delegateError: MessageDelegate?
-
-    func parameters (urlComponents:URLComponents ) -> [URLQueryItem]? {
-        var query = [URLQueryItem]()
-        
-        query.append(URLQueryItem(name: "access_key", value: "3bdda02ece03a789028d549bb36adadd"))
-        return query
-    }
-    
     
     func request<T>(endpoint: Endpoint,  completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
         
-        let monitor = NWPathMonitor()
-        monitor.pathUpdateHandler = { path in
-            if path.status == .satisfied {
-                print("We're connected!")
-            } else {
-                self.delegateError?.showMessage()
-            }
-
-            print(path.isExpensive)
-        }
-        
-        let queue = DispatchQueue(label: "Monitor")
-        monitor.start(queue: queue)
+        checkInternetConnection()
         
         guard let url = makeURL( endpoint: endpoint) else {
             completion(.failure(NSError()))
@@ -61,18 +30,17 @@ public class NetworkManager: NetworkManagerProtocol {
             guard let data = data else {
                 return
             }
+            
             do {
                 let response = try JSONDecoder().decode(T.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(response))
                 }
             } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(NSError()))
-
-                }
+                completion(.failure(NSError()))
             }
         }
+        
         task.resume()
     }
     
@@ -87,4 +55,26 @@ public class NetworkManager: NetworkManagerProtocol {
         return components.url?.absoluteURL
     }
     
+    func parameters (urlComponents:URLComponents ) -> [URLQueryItem]? {
+        var query = [URLQueryItem]()
+        
+        query.append(URLQueryItem(name: "access_key", value: "3bdda02ece03a789028d549bb36adadd"))
+        return query
+    }
+    
+}
+
+extension NetworkManager {
+    private func checkInternetConnection() {
+        let monitor = NWPathMonitor()
+        let queue = DispatchQueue(label: "Monitor")
+        
+        monitor.pathUpdateHandler = { path in
+            if path.status != .satisfied {
+                self.delegateError?.showMessage()
+            }
+        }
+        
+        monitor.start(queue: queue)
+    }
 }

@@ -14,13 +14,13 @@ protocol Coordinator {
 
 class MainCoordinator: Coordinator {
     private let presenter: UINavigationController
-    private var conversionController: ConversionController?
+    private var conversionController: ConversionViewController?
     
     init(presenter: UINavigationController) {
          self.presenter = presenter
     }
     func start() {
-        let conversionController = ConversionController()
+        let conversionController = ConversionViewController()
             self.conversionController = conversionController
               
               presenter.pushViewController(conversionController, animated: true)
