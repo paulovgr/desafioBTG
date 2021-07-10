@@ -25,7 +25,7 @@ class ConversionController: UIViewController, CurrencyDelegate{
         let defaults = UserDefaults.standard
         if !defaults.bool(forKey: "loadData") {
             defaults.set(true, forKey: "loadData")
-            viewModel.setCurrency()
+            viewModel.setCurrencies()
             
         } 
         DesignSystem.setupTitle("Conversão", navegation: self)

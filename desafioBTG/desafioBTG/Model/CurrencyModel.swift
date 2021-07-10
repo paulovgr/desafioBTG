@@ -10,6 +10,7 @@ import Foundation
 struct CurrencyModel {
     var value = String()
     var key = String()
+    var isFavorited = Bool()
     
     init(_ value: String, _ key: String) {
         self.key = key

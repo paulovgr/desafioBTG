@@ -40,8 +40,10 @@ class CurrenciesTableView: UIView {
 
 extension CurrenciesTableView: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        quotesViewModel.setQuotes(initials: currencies[indexPath.item].key)
-        DispatchQueue.main.async {
+        quotesViewModel.setQuotes()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)  { [self] in
+
             print(self.quotesViewModel.selectedCurrencies)
 
         }

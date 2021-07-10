@@ -132,7 +132,7 @@
 				94200D7C2695216B00D61707 /* Service */,
 				94200D7B2695216300D61707 /* Model */,
 				94200D792695213F00D61707 /* ViewModel */,
-				949D966B2696B6730021A897 /* ViewCoontroller */,
+				949D966B2696B6730021A897 /* ViewController */,
 				94200D7A2695215900D61707 /* View */,
 				94200D7D269521BF00D61707 /* Utils */,
 				94200D782695205300D61707 /* Application */,
@@ -220,13 +220,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		949D966B2696B6730021A897 /* ViewCoontroller */ = {
+		949D966B2696B6730021A897 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				94200D4926951C8900D61707 /* ConversionController.swift */,
 				949D96762697E0040021A897 /* CurrenciesViewController.swift */,
 			);
-			path = ViewCoontroller;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

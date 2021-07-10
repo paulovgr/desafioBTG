@@ -66,7 +66,7 @@ class CurrenciesListViewModel   {
          let context = appDelegate.persistentContainer.viewContext
          
 
-         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Currencie")
+         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Currency")
 
          
          do {

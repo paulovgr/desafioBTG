@@ -9,8 +9,10 @@ import Foundation
 
 struct QuoteModel {
     var value = Double()
+    var key = String()
 
-    init(_ value: Double) {
+    init(_ value: Double, _ key: String) {
+        self.key = key
         self.value = value
     }
 }
