@@ -5,7 +5,7 @@
         <attribute name="key" optional="YES" attributeType="String"/>
         <attribute name="value" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Quote" representedClassName="Currency" syncable="YES" codeGenerationType="class">
+    <entity name="Quote" representedClassName="Quote" syncable="YES" codeGenerationType="class">
         <attribute name="key" optional="YES" attributeType="String"/>
         <attribute name="value" optional="YES" attributeType="String"/>
     </entity>
