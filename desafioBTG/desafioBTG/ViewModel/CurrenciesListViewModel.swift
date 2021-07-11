@@ -10,15 +10,18 @@ import CoreData
 import UIKit
 
 class CurrenciesListViewModel {
-    private var service = NetworkManager()
+    private var service: NetworkManager
     weak var delegate: CurrencyDelegate?
     var delegateError: MessageDelegate?
     var currencies  =  [CurrencyModel]()
     
-    init() {
-        service.delegateError = self
-    }
+   
     
+    required init(service: NetworkManager) {
+        self.service = service
+        self.service.delegateError = self
+
+    }
     func requestCurrencie(completion: @escaping (Result<CurrenciesListModel, Error>) -> Void) {
         service.request(endpoint: .list, completion: completion)
     }

@@ -21,6 +21,7 @@
 		94200D8326952CD900D61707 /* QuotesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D8226952CD900D61707 /* QuotesListModel.swift */; };
 		944292B426995EA30053BF63 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944292B326995EA30053BF63 /* Utils.swift */; };
 		944292B62699645F0053BF63 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944292B52699645F0053BF63 /* Protocols.swift */; };
+		94868FC1269ADD6B00429A6A /* NetworkManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94868FC0269ADD6B00429A6A /* NetworkManagerMock.swift */; };
 		949D9665269542150021A897 /* CurrenciesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9664269542150021A897 /* CurrenciesListViewModel.swift */; };
 		949D9668269673910021A897 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9667269673900021A897 /* ViewCode.swift */; };
 		949D966A2696756A0021A897 /* ConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D96692696756A0021A897 /* ConversionView.swift */; };
@@ -72,6 +73,7 @@
 		94200D8226952CD900D61707 /* QuotesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesListModel.swift; sourceTree = "<group>"; };
 		944292B326995EA30053BF63 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		944292B52699645F0053BF63 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		94868FC0269ADD6B00429A6A /* NetworkManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
 		949D9664269542150021A897 /* CurrenciesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewModel.swift; sourceTree = "<group>"; };
 		949D9667269673900021A897 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		949D96692696756A0021A897 /* ConversionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		94200D4426951C8900D61707 /* desafioBTG */ = {
 			isa = PBXGroup;
 			children = (
+				949D96742697D6210021A897 /* MainCoordinator.swift */,
 				94200D7C2695216B00D61707 /* Service */,
 				94200D7B2695216300D61707 /* Model */,
 				94200D792695213F00D61707 /* ViewModel */,
@@ -145,7 +148,6 @@
 				94200D5326951C8D00D61707 /* LaunchScreen.storyboard */,
 				94200D5626951C8D00D61707 /* Info.plist */,
 				94200D4E26951C8900D61707 /* desafioBTG.xcdatamodeld */,
-				949D96742697D6210021A897 /* MainCoordinator.swift */,
 			);
 			path = desafioBTG;
 			sourceTree = "<group>";
@@ -153,6 +155,7 @@
 		94200D5E26951C8D00D61707 /* desafioBTGTests */ = {
 			isa = PBXGroup;
 			children = (
+				94868FBF269ADD3C00429A6A /* Mock */,
 				94200D5F26951C8D00D61707 /* desafioBTGTests.swift */,
 				94200D6126951C8D00D61707 /* Info.plist */,
 			);
@@ -224,6 +227,14 @@
 				944292B52699645F0053BF63 /* Protocols.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		94868FBF269ADD3C00429A6A /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				94868FC0269ADD6B00429A6A /* NetworkManagerMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		949D966B2696B6730021A897 /* ViewController */ = {
@@ -392,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94868FC1269ADD6B00429A6A /* NetworkManagerMock.swift in Sources */,
 				94200D6026951C8D00D61707 /* desafioBTGTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

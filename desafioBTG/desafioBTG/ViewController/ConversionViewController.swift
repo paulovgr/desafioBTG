@@ -12,21 +12,24 @@ class ConversionViewController: UIViewController,QuoteDelegate {
     func PassQuote(_ value: Any) {
         print(value)
     }
-    
-    private let viewModel  = CurrenciesListViewModel()
-    private let quotesViewModel = QuotesListViewModel()
+ 
+    private let service = NetworkManager()
+
+    private var currenciesViewModel = CurrenciesListViewModel(service: NetworkManager())
+    private var quotesViewModel = QuotesListViewModel(service: NetworkManager())
     private let conversionView = ConversionView()
-    
     private var originQuote: QuoteModel?
     private var destinyQuote: QuoteModel?
     
+    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.delegate = self
-        viewModel.delegateError = self
+        currenciesViewModel.delegate = self
+        currenciesViewModel.delegateError = self
         setupViewModels()
-        
         DesignSystem.setupTitle("Conversão", navegation: self)
+        
     }
     
     override func loadView() {
@@ -67,6 +70,8 @@ extension ConversionViewController {
     
     
     private func setupViewComponents() {
+        
+
         conversionView.destinyButton.setTitle(setupDestinyModel().key, for: .normal)
         conversionView.originButton.setTitle(setupOriginModel().key, for: .normal)
         conversionView.setText("")
@@ -75,7 +80,7 @@ extension ConversionViewController {
     private func setupViewModels() {
         quotesViewModel.setQuotes()
         if !UserDefaults.standard.bool(forKey: "loadData") {
-            viewModel.setCurrencies()
+            currenciesViewModel.setCurrencies()
         }
     }
     
@@ -104,10 +109,9 @@ extension ConversionViewController {
         if let key = userDefault.string(forKey: "originButtonKey")    {
             originQuote = QuoteModel(userDefault.double(forKey: "originButtonValue"),
                                      Utils.removeCaracters(word: key, num: 3))
-            
         }
-        
-        guard let originQuote = originQuote else { return QuoteModel(0, "") }
+
+        guard let originQuote = originQuote else { return QuoteModel(0, "$") }
         return originQuote
         
     }
@@ -121,17 +125,19 @@ extension ConversionViewController {
                                       Utils.removeCaracters(word: key, num: 3))
         }
         
-        guard let destinyQuote = destinyQuote else { return QuoteModel(0, "") }
+        guard let destinyQuote = destinyQuote else { return QuoteModel(0, "$") }
         return destinyQuote
     }
     
     private func showResult(originQuote: QuoteModel, destinyQuote: QuoteModel) {
         if let userInput = Double(conversionView.getTextField()) {
-            let result = quotesViewModel.convertValue(from: originQuote.value, to: destinyQuote.value, value: userInput)
-            conversionView.setText("De \(originQuote.key) " +
-                                    "Para: \(destinyQuote.key) " +
-                                    "= \(String(format: "%.2f", result))")
-            conversionView.colorTextField(.black)
+             let result = quotesViewModel.convertValue(from: originQuote.value, to: destinyQuote.value, value: userInput)
+                conversionView.setText("De \(originQuote.key) " +
+                                        "Para: \(destinyQuote.key) " +
+                                        "= \(String(format: "%.2f", result))")
+                conversionView.colorTextField(.black)
+            
+
 
         } else {
             conversionView.setText("Insira um valor")

@@ -10,12 +10,13 @@ import  CoreData
 
 
 class CurrenciesTableView: UIView {
-    private let currencyViewModel  = CurrenciesListViewModel()
-    private let quotesViewModel  = QuotesListViewModel()
+    private let currenciesViewModel: CurrenciesListViewModel?
+    private let quotesViewModel: QuotesListViewModel?
     var currencies  =  [CurrencyModel]()
     weak var delegate: QuoteDelegate?
     var quote: QuoteModel?
-    
+    private let service: NetworkManager
+
     // MARK: - Views
     lazy var currenciesTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -26,15 +27,18 @@ class CurrenciesTableView: UIView {
         return tableView
     }()
     
-    init() {
-        super.init(frame: .zero)
+    required init(service: NetworkManager) {
+        self.service = service
+        self.quotesViewModel = QuotesListViewModel(service: service)
+        self.currenciesViewModel = CurrenciesListViewModel(service: service)
         
+
+        super.init(frame: .zero)
         setupViews()
-        currencyViewModel.loadCurrenciesCoreData()
-        quotesViewModel.loadCoreData()
-        self.currencies = currencyViewModel.currencies
+        setupDatas()
 
     }
+ 
     
     @objc func buttonSelected(sender: UIButton) {
     var buttonNumber = sender.tag
@@ -47,9 +51,19 @@ class CurrenciesTableView: UIView {
 
 }
 
+extension CurrenciesTableView {
+    private func setupDatas() {
+        currenciesViewModel?.loadCurrenciesCoreData()
+        quotesViewModel?.loadCoreData()
+        if let currencies = currenciesViewModel?.currencies {
+            self.currencies = currencies
+        }
+    }
+}
 extension CurrenciesTableView: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        quote = quotesViewModel.quotes[indexPath.row]
+        quote = quotesViewModel?.quotes[indexPath.row]
+
     }
 }
 

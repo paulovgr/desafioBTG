@@ -10,8 +10,15 @@ import CoreData
 import UIKit
 
 class QuotesListViewModel   {
-    private var service = NetworkManager()
+    private var service: NetworkManager
     var quotes = [QuoteModel]()
+    
+    
+    required init(service: NetworkManager) {
+        self.service = service
+    }
+    
+    
     
     func requestQuote(completion: @escaping (Result<QuotesListModel, Error>) -> Void) {
         service.request(endpoint: .live , completion: completion)

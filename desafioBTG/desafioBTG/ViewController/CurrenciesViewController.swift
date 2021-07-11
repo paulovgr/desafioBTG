@@ -8,10 +8,20 @@
 import UIKit
 
 class CurrenciesViewController: UIViewController {
+    private let service = NetworkManager()
+
     var buttonSeleted = ""
-    let viewTable = CurrenciesTableView()
+    let viewTable: CurrenciesTableView?
     weak var delegate: QuoteDelegate?
 
+    required init() {
+        self.viewTable = CurrenciesTableView(service: service)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func loadView() {
         view  = viewTable
         
@@ -19,10 +29,12 @@ class CurrenciesViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
-        guard let data = viewTable.quote else {
+        guard let viewTableQuote = viewTable?.quote else{
             return
         }
+        let data = viewTableQuote 
+            
+        
         UserDefaults.standard.set(data.key, forKey: buttonSeleted + "Key")
         UserDefaults.standard.set(data.value, forKey: buttonSeleted + "Value")
   
