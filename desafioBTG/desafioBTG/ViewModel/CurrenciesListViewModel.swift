@@ -107,15 +107,12 @@ extension CurrenciesListViewModel{
 
                     let data = NSManagedObject(entity: userEntity, insertInto: context)
                     if !(object.value(forKey: "isFavorited") as! Bool) {
-                        print(object)
                         context.delete(object)
-                        print("fav")
                         data.setValue(model.value, forKey: "value")
                         data.setValue(model.key, forKey: "key")
                         data.setValue(true, forKey: "isFavorited")
                     } else {
                         context.delete(object )
-                        print("desfave")
                         data.setValue(model.value, forKey: "value")
                         data.setValue(model.key, forKey: "key")
                         data.setValue(false, forKey: "isFavorited")
