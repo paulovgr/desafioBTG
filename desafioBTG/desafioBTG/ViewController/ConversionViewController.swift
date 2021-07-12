@@ -8,59 +8,36 @@
 import UIKit
 
 
-class ConversionViewController: UIViewController,QuoteDelegate {
-    func PassQuote(_ value: Any) {
-        print(value)
-    }
- 
-    private let service = NetworkManager()
+class ConversionViewController: UIViewController {
 
+    private let service = NetworkManager()
     private var currenciesViewModel = CurrenciesListViewModel(service: NetworkManager())
     private var quotesViewModel = QuotesListViewModel(service: NetworkManager())
     private let conversionView = ConversionView()
     private var originQuote: QuoteModel?
     private var destinyQuote: QuoteModel?
-    
-    
- 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        currenciesViewModel.delegate = self
         currenciesViewModel.delegateError = self
         setupViewModels()
-        DesignSystem.setupTitle("Conversão", navegation: self)
-        
     }
     
     override func loadView() {
         view = conversionView
         setupButtonActions(conversionView)
     }
-    
-    
-    
-    
-    
-    
+
     override func viewDidAppear(_ animated: Bool) {
         setupViewComponents()
-        
     }
     
-}
-
-extension ConversionViewController: CurrencyDelegate{
-    func PassCurrencies() {
-        print("oi")
-    }
 }
 
 extension ConversionViewController:  MessageDelegate {
     func showMessage() {
         Utils.setupAlert(title: "ERRO" , message: "Falha na conexão", viewController: self)
     }
-    
-
 }
 
 extension ConversionViewController {
@@ -72,8 +49,7 @@ extension ConversionViewController {
     
     
     private func setupViewComponents() {
-        
-
+        DesignSystem.setupTitle("Conversão", navegation: self)
         conversionView.destinyButton.setTitle(setupDestinyModel().key, for: .normal)
         conversionView.originButton.setTitle(setupOriginModel().key, for: .normal)
         conversionView.setText("")
@@ -88,7 +64,6 @@ extension ConversionViewController {
     
     @objc func convertButtonTapped() {
         showResult(originQuote: setupOriginModel(), destinyQuote: setupDestinyModel())
-        
     }
     
     @objc func destinyButtonTap() {
@@ -121,7 +96,6 @@ extension ConversionViewController {
     private func setupDestinyModel () -> QuoteModel {
         let userDefault = UserDefaults.standard
         
-        
         if let key = userDefault.string(forKey: "destinyButtonKey") {
             destinyQuote = QuoteModel(userDefault.double(forKey: "destinyButtonValue"),
                                       Utils.removeCaracters(word: key, num: 3))
@@ -138,17 +112,12 @@ extension ConversionViewController {
                                         "Para: \(destinyQuote.key) " +
                                         "= \(String(format: "%.2f", result))")
                 conversionView.colorTextField(.black)
-            
-
-
         } else {
             conversionView.setText("Insira um valor")
             conversionView.colorTextField(.red)
         }
-        
-   
-        
     }
+    
     func getConversionView() -> ConversionView {
         return conversionView
     }

@@ -12,9 +12,10 @@ struct CurrencyModel: Equatable {
     var key = String()
     var isFavorited = Bool()
     
-    init(_ value: String, _ key: String) {
+    init(_ value: String, _ key: String, _ isFavorited:Bool) {
         self.key = key
         self.value = value
+        self.isFavorited = isFavorited
     }
     
 }

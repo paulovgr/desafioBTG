@@ -94,9 +94,6 @@ extension ConversionView: ViewCode {
             destinyButton.trailingAnchor.constraint(equalTo: self.textField.trailingAnchor),
             destinyButton.bottomAnchor.constraint(equalTo: self.textField.topAnchor, constant: -12),
         ])
-        
-        
-        
     }
     
     

@@ -5,11 +5,6 @@
 //  Created by Paulo Victor Guimaraes Rosa on 10/07/21.
 //
 
-
-protocol CurrencyDelegate: AnyObject {
-    func PassCurrencies()
-}
-
 protocol QuoteDelegate: AnyObject {
     func PassQuote(_ value: Any)
 }

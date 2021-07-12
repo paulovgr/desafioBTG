@@ -20,7 +20,7 @@ class CurrenciesListViewModelTest: XCTestCase {
     func test() {
         XCTAssertNotNil(sut.currencies)
         XCTAssertNoThrow(sut.deleteData(bool: true, key: "3" ))
-        XCTAssertNoThrow(sut.saveCurrenciesCoreData(CurrencyModel("", "")))
+        XCTAssertNoThrow(sut.saveCurrenciesCoreData(CurrencyModel("", "", false)))
         XCTAssertNoThrow(sut.showMessage())
     }
     override func setUpWithError() throws {

@@ -11,7 +11,6 @@ import UIKit
 
 class CurrenciesListViewModel {
     private var service: NetworkManager
-    weak var delegate: CurrencyDelegate?
     var delegateError: MessageDelegate?
     var currencies  =  [CurrencyModel]()
     
@@ -42,11 +41,9 @@ extension CurrenciesListViewModel{
             case .success(let data):
                 let datas = Array(data.currencies.map{$0})
                 for data in datas {
-                    saveCurrenciesCoreData(CurrencyModel(data.value, data.key))
+                    saveCurrenciesCoreData(CurrencyModel(data.value, data.key, false))
                 }
-                
                 UserDefaults.standard.set(true, forKey: "loadData")
-                delegate?.PassCurrencies()
             case .failure(_):
                 setCurrencies()
             }
@@ -63,6 +60,8 @@ extension CurrenciesListViewModel{
         
         data.setValue(currenciesArray.value, forKey: "value")
         data.setValue(currenciesArray.key, forKey: "key")
+        data.setValue(currenciesArray.isFavorited, forKey: "isFavorited")
+
         
         do{
             try context.save()
@@ -84,7 +83,8 @@ extension CurrenciesListViewModel{
             let result = try context.fetch(fetchRequest)
             for data in result as! [NSManagedObject]{
                 self.currencies.append(CurrencyModel(data.value(forKey: "value") as! String,
-                                                     data.value(forKey: "key") as! String))
+                                                     data.value(forKey: "key") as! String,
+                                                     data.value(forKey: "isFavorited") as! Bool))
             }
             self.currencies.sort {
                 $0.key < $1.key
@@ -95,25 +95,44 @@ extension CurrenciesListViewModel{
         }
     }
     
-    func deleteData(bool: Bool, key: String) {
+    func deleteData(model: CurrencyModel) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Currency")
         
-        if  let result = try?  context.fetch(fetchRequest){
-            for object in result {
-        
-                context.delete(object as! NSManagedObject)
+         if let result = try?  context.fetch(fetchRequest){
+            for object in result as! [NSManagedObject]{
+                if object.value(forKey: "key") as! String  == model.key  {
+                    let userEntity = NSEntityDescription.entity(forEntityName: "Currency", in: context)!
+
+                    let data = NSManagedObject(entity: userEntity, insertInto: context)
+                    if !(object.value(forKey: "isFavorited") as! Bool) {
+                        print(object)
+                        context.delete(object)
+                        print("fav")
+                        data.setValue(model.value, forKey: "value")
+                        data.setValue(model.key, forKey: "key")
+                        data.setValue(true, forKey: "isFavorited")
+                    } else {
+                        context.delete(object )
+                        print("desfave")
+                        data.setValue(model.value, forKey: "value")
+                        data.setValue(model.key, forKey: "key")
+                        data.setValue(false, forKey: "isFavorited")
+                    }
+
+                }
             }
         }
         
         do{
             try context.save()
-        }catch let error as NSError {
+       }catch let error as NSError {
             print("Could not save \(error), \(error.userInfo)")
         }
         
     }
+
 }
 
 

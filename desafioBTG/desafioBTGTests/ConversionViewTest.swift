@@ -11,7 +11,7 @@ import XCTest
 class ConversionViewTest: XCTestCase {
     var sut: ConversionViewController!
     var quote = QuoteModel(12, "BR")
-    var Currency = CurrencyModel("12", "BR")
+    var Currency = CurrencyModel("12", "BR", false)
 
     override  func setUp() {
         sut = ConversionViewController()
