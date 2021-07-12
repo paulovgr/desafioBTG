@@ -94,6 +94,26 @@ extension CurrenciesListViewModel{
             print(error.localizedDescription)
         }
     }
+    
+    func deleteData(bool: Bool, key: String) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Currency")
+        
+        if  let result = try?  context.fetch(fetchRequest){
+            for object in result {
+        
+                context.delete(object as! NSManagedObject)
+            }
+        }
+        
+        do{
+            try context.save()
+        }catch let error as NSError {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+    }
 }
 
 

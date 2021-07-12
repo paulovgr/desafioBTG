@@ -41,8 +41,14 @@ class CurrenciesTableView: UIView {
  
     
     @objc func buttonSelected(sender: UIButton) {
-    var buttonNumber = sender.tag
-    print(buttonNumber)
+    let buttonNumber = sender.tag
+        print (currencies[buttonNumber])
+        currenciesTableView.beginUpdates()
+        currenciesTableView.reloadRows(at: [IndexPath(row: buttonNumber, section: 0)], with: .automatic)
+        currencies[buttonNumber].isFavorited = true
+        currenciesTableView.endUpdates()
+
+        
     }
     
     required init?(coder: NSCoder) {
@@ -85,9 +91,12 @@ extension CurrenciesTableView: UITableViewDataSource{
         cell.setupViews()
         cell.favoriteButton.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
         cell.favoriteButton.tag = indexPath.row
+        
         let currencie = currencies[indexPath.item]
 //        cell.favoriteButton.setTitle(DesignSystem.starOn, for: .selected)
-
+        if currencie.isFavorited {
+            cell.favoriteButton.setTitle(DesignSystem.starOn, for: .normal)
+        }
         cell.currenciesLabel.text = "\(currencie.key) - \(currencie.value)"
         return cell
     }

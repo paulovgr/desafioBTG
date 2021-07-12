@@ -59,6 +59,8 @@ extension ConversionViewController:  MessageDelegate {
     func showMessage() {
         Utils.setupAlert(title: "ERRO" , message: "Falha na conexão", viewController: self)
     }
+    
+
 }
 
 extension ConversionViewController {
@@ -144,8 +146,11 @@ extension ConversionViewController {
             conversionView.colorTextField(.red)
         }
         
+   
         
-        
+    }
+    func getConversionView() -> ConversionView {
+        return conversionView
     }
 }
 

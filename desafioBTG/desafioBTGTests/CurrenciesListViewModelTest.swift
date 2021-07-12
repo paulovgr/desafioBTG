@@ -1,15 +1,28 @@
 //
-//  desafioBTGTests.swift
+//  CurrenciesListViewModelTest.swift
 //  desafioBTGTests
 //
-//  Created by Paulo Victor Guimaraes Rosa on 06/07/21.
+//  Created by Paulo Victor Guimaraes Rosa on 11/07/21.
 //
 
 import XCTest
 @testable import desafioBTG
 
-class desafioBTGTests: XCTestCase {
+class CurrenciesListViewModelTest: XCTestCase {
+    var sut: CurrenciesListViewModel!
 
+
+    override  func setUp() {
+        sut = CurrenciesListViewModel(service: NetworkManagerMock())
+        
+    }
+    
+    func test() {
+        XCTAssertNotNil(sut.currencies)
+        XCTAssertNoThrow(sut.deleteData(bool: true, key: "3" ))
+        XCTAssertNoThrow(sut.saveCurrenciesCoreData(CurrencyModel("", "")))
+        XCTAssertNoThrow(sut.showMessage())
+    }
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }

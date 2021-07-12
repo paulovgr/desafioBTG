@@ -14,14 +14,16 @@
 		94200D5026951C8900D61707 /* desafioBTG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94200D4E26951C8900D61707 /* desafioBTG.xcdatamodeld */; };
 		94200D5226951C8D00D61707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94200D5126951C8D00D61707 /* Assets.xcassets */; };
 		94200D5526951C8D00D61707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94200D5326951C8D00D61707 /* LaunchScreen.storyboard */; };
-		94200D6026951C8D00D61707 /* desafioBTGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D5F26951C8D00D61707 /* desafioBTGTests.swift */; };
-		94200D6B26951C8D00D61707 /* desafioBTGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D6A26951C8D00D61707 /* desafioBTGUITests.swift */; };
 		94200D7F2695290F00D61707 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D7E2695290F00D61707 /* NetworkManager.swift */; };
 		94200D8126952B3800D61707 /* CurrenciesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D8026952B3800D61707 /* CurrenciesListModel.swift */; };
 		94200D8326952CD900D61707 /* QuotesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94200D8226952CD900D61707 /* QuotesListModel.swift */; };
 		944292B426995EA30053BF63 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944292B326995EA30053BF63 /* Utils.swift */; };
 		944292B62699645F0053BF63 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944292B52699645F0053BF63 /* Protocols.swift */; };
+		945E07C8269BC81E00CBD271 /* ConversionViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945E07C7269BC81E00CBD271 /* ConversionViewTest.swift */; };
 		94868FC1269ADD6B00429A6A /* NetworkManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94868FC0269ADD6B00429A6A /* NetworkManagerMock.swift */; };
+		94868FC3269B927600429A6A /* QuotesListMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 94868FC2269B927600429A6A /* QuotesListMock.json */; };
+		94868FC5269B939300429A6A /* CurrencyListMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 94868FC4269B939300429A6A /* CurrencyListMock.json */; };
+		94868FC7269B96DF00429A6A /* CurrenciesTableViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94868FC6269B96DF00429A6A /* CurrenciesTableViewTest.swift */; };
 		949D9665269542150021A897 /* CurrenciesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9664269542150021A897 /* CurrenciesListViewModel.swift */; };
 		949D9668269673910021A897 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9667269673900021A897 /* ViewCode.swift */; };
 		949D966A2696756A0021A897 /* ConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D96692696756A0021A897 /* ConversionView.swift */; };
@@ -33,17 +35,12 @@
 		949D9679269813740021A897 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D9678269813740021A897 /* CurrencyModel.swift */; };
 		949D967B2698E64C0021A897 /* QuotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D967A2698E64C0021A897 /* QuotesListViewModel.swift */; };
 		949D967D2698EDD10021A897 /* QuoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D967C2698EDD10021A897 /* QuoteModel.swift */; };
+		94A3A9FC269BD8DE00016C70 /* UtilsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A3A9FB269BD8DE00016C70 /* UtilsMock.swift */; };
+		94A3A9FE269BDC7900016C70 /* CurrenciesListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A3A9FD269BDC7900016C70 /* CurrenciesListViewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		94200D5C26951C8D00D61707 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 94200D3A26951C8900D61707 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 94200D4126951C8900D61707;
-			remoteInfo = desafioBTG;
-		};
-		94200D6726951C8D00D61707 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 94200D3A26951C8900D61707 /* Project object */;
 			proxyType = 1;
@@ -63,17 +60,17 @@
 		94200D5426951C8D00D61707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94200D5626951C8D00D61707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94200D5B26951C8D00D61707 /* desafioBTGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = desafioBTGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		94200D5F26951C8D00D61707 /* desafioBTGTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = desafioBTGTests.swift; sourceTree = "<group>"; };
 		94200D6126951C8D00D61707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94200D6626951C8D00D61707 /* desafioBTGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = desafioBTGUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		94200D6A26951C8D00D61707 /* desafioBTGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = desafioBTGUITests.swift; sourceTree = "<group>"; };
-		94200D6C26951C8D00D61707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94200D7E2695290F00D61707 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		94200D8026952B3800D61707 /* CurrenciesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListModel.swift; sourceTree = "<group>"; };
 		94200D8226952CD900D61707 /* QuotesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesListModel.swift; sourceTree = "<group>"; };
 		944292B326995EA30053BF63 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		944292B52699645F0053BF63 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		945E07C7269BC81E00CBD271 /* ConversionViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewTest.swift; sourceTree = "<group>"; };
 		94868FC0269ADD6B00429A6A /* NetworkManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
+		94868FC2269B927600429A6A /* QuotesListMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = QuotesListMock.json; sourceTree = "<group>"; };
+		94868FC4269B939300429A6A /* CurrencyListMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrencyListMock.json; sourceTree = "<group>"; };
+		94868FC6269B96DF00429A6A /* CurrenciesTableViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesTableViewTest.swift; sourceTree = "<group>"; };
 		949D9664269542150021A897 /* CurrenciesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewModel.swift; sourceTree = "<group>"; };
 		949D9667269673900021A897 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		949D96692696756A0021A897 /* ConversionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionView.swift; sourceTree = "<group>"; };
@@ -85,6 +82,8 @@
 		949D9678269813740021A897 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		949D967A2698E64C0021A897 /* QuotesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesListViewModel.swift; sourceTree = "<group>"; };
 		949D967C2698EDD10021A897 /* QuoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteModel.swift; sourceTree = "<group>"; };
+		94A3A9FB269BD8DE00016C70 /* UtilsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsMock.swift; sourceTree = "<group>"; };
+		94A3A9FD269BDC7900016C70 /* CurrenciesListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,13 +101,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94200D6326951C8D00D61707 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -117,7 +109,6 @@
 			children = (
 				94200D4426951C8900D61707 /* desafioBTG */,
 				94200D5E26951C8D00D61707 /* desafioBTGTests */,
-				94200D6926951C8D00D61707 /* desafioBTGUITests */,
 				94200D4326951C8900D61707 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -127,7 +118,6 @@
 			children = (
 				94200D4226951C8900D61707 /* desafioBTG.app */,
 				94200D5B26951C8D00D61707 /* desafioBTGTests.xctest */,
-				94200D6626951C8D00D61707 /* desafioBTGUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,20 +145,13 @@
 		94200D5E26951C8D00D61707 /* desafioBTGTests */ = {
 			isa = PBXGroup;
 			children = (
+				94868FC6269B96DF00429A6A /* CurrenciesTableViewTest.swift */,
+				945E07C7269BC81E00CBD271 /* ConversionViewTest.swift */,
+				94A3A9FD269BDC7900016C70 /* CurrenciesListViewModelTest.swift */,
 				94868FBF269ADD3C00429A6A /* Mock */,
-				94200D5F26951C8D00D61707 /* desafioBTGTests.swift */,
 				94200D6126951C8D00D61707 /* Info.plist */,
 			);
 			path = desafioBTGTests;
-			sourceTree = "<group>";
-		};
-		94200D6926951C8D00D61707 /* desafioBTGUITests */ = {
-			isa = PBXGroup;
-			children = (
-				94200D6A26951C8D00D61707 /* desafioBTGUITests.swift */,
-				94200D6C26951C8D00D61707 /* Info.plist */,
-			);
-			path = desafioBTGUITests;
 			sourceTree = "<group>";
 		};
 		94200D782695205300D61707 /* Application */ = {
@@ -233,6 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				94868FC0269ADD6B00429A6A /* NetworkManagerMock.swift */,
+				94868FC2269B927600429A6A /* QuotesListMock.json */,
+				94868FC4269B939300429A6A /* CurrencyListMock.json */,
+				94A3A9FB269BD8DE00016C70 /* UtilsMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -284,24 +270,6 @@
 			productReference = 94200D5B26951C8D00D61707 /* desafioBTGTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		94200D6526951C8D00D61707 /* desafioBTGUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 94200D7526951C8D00D61707 /* Build configuration list for PBXNativeTarget "desafioBTGUITests" */;
-			buildPhases = (
-				94200D6226951C8D00D61707 /* Sources */,
-				94200D6326951C8D00D61707 /* Frameworks */,
-				94200D6426951C8D00D61707 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				94200D6826951C8D00D61707 /* PBXTargetDependency */,
-			);
-			name = desafioBTGUITests;
-			productName = desafioBTGUITests;
-			productReference = 94200D6626951C8D00D61707 /* desafioBTGUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -315,10 +283,6 @@
 						CreatedOnToolsVersion = 12.5.1;
 					};
 					94200D5A26951C8D00D61707 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 94200D4126951C8900D61707;
-					};
-					94200D6526951C8D00D61707 = {
 						CreatedOnToolsVersion = 12.5.1;
 						TestTargetID = 94200D4126951C8900D61707;
 					};
@@ -339,7 +303,6 @@
 			targets = (
 				94200D4126951C8900D61707 /* desafioBTG */,
 				94200D5A26951C8D00D61707 /* desafioBTGTests */,
-				94200D6526951C8D00D61707 /* desafioBTGUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -359,13 +322,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		94200D6426951C8D00D61707 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				94868FC5269B939300429A6A /* CurrencyListMock.json in Resources */,
+				94868FC3269B927600429A6A /* QuotesListMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,15 +362,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94868FC1269ADD6B00429A6A /* NetworkManagerMock.swift in Sources */,
-				94200D6026951C8D00D61707 /* desafioBTGTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		94200D6226951C8D00D61707 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				94200D6B26951C8D00D61707 /* desafioBTGUITests.swift in Sources */,
+				94868FC7269B96DF00429A6A /* CurrenciesTableViewTest.swift in Sources */,
+				945E07C8269BC81E00CBD271 /* ConversionViewTest.swift in Sources */,
+				94A3A9FC269BD8DE00016C70 /* UtilsMock.swift in Sources */,
+				94A3A9FE269BDC7900016C70 /* CurrenciesListViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,11 +376,6 @@
 			isa = PBXTargetDependency;
 			target = 94200D4126951C8900D61707 /* desafioBTG */;
 			targetProxy = 94200D5C26951C8D00D61707 /* PBXContainerItemProxy */;
-		};
-		94200D6826951C8D00D61707 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 94200D4126951C8900D61707 /* desafioBTG */;
-			targetProxy = 94200D6726951C8D00D61707 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -649,46 +597,6 @@
 			};
 			name = Release;
 		};
-		94200D7626951C8D00D61707 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QS7SSX5DQ3;
-				INFOPLIST_FILE = desafioBTGUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.paulo.desafioBTGUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = desafioBTG;
-			};
-			name = Debug;
-		};
-		94200D7726951C8D00D61707 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QS7SSX5DQ3;
-				INFOPLIST_FILE = desafioBTGUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.paulo.desafioBTGUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = desafioBTG;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -715,15 +623,6 @@
 			buildConfigurations = (
 				94200D7326951C8D00D61707 /* Debug */,
 				94200D7426951C8D00D61707 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		94200D7526951C8D00D61707 /* Build configuration list for PBXNativeTarget "desafioBTGUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				94200D7626951C8D00D61707 /* Debug */,
-				94200D7726951C8D00D61707 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

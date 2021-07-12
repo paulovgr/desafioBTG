@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrencyModel {
+struct CurrencyModel: Equatable {
     var value = String()
     var key = String()
     var isFavorited = Bool()

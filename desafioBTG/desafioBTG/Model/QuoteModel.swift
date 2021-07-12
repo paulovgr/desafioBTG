@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct QuoteModel {
+struct QuoteModel: Equatable {
     var value = Double()
     var key = String()
 

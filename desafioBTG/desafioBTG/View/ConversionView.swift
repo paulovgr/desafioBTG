@@ -13,7 +13,7 @@ class ConversionView: UIView {
     let originButton = DesignSystem.setupButton("$")
     let convertButton = DesignSystem.setupButton("Converter")
     let destinyButton = DesignSystem.setupButton("$")
-    private let textField = DesignSystem.setupTextField()
+    let textField = DesignSystem.setupTextField()
     private let resultLabel = DesignSystem.setupLabel("Resultado", 30)
     private let arrowLabel = DesignSystem.setupLabel("→", 30)
     
