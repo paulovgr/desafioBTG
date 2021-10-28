@@ -16,6 +16,8 @@ class ConversionViewController: UIViewController {
     private let conversionView = ConversionView()
     private var originQuote: QuoteModel?
     private var destinyQuote: QuoteModel?
+    var coordinator: MainCoordinator?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,16 +69,11 @@ extension ConversionViewController {
     }
     
     @objc func destinyButtonTap() {
-        let view = CurrenciesViewController()
-        view.buttonSeleted = "destinyButton"
-        self.navigationController?.pushViewController(view, animated: true)
-        
+        coordinator?.goToCurrenciesView(buttonSeleted: "destinyButton")
     }
     
     @objc func originButtonTap() {
-        let view = CurrenciesViewController()
-        view.buttonSeleted = "originButton"
-        self.navigationController?.pushViewController(view, animated: true)
+        coordinator?.goToCurrenciesView(buttonSeleted: "originButton")
     }
     
     private func setupOriginModel () -> QuoteModel{
