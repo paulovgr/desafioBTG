@@ -37,6 +37,7 @@
 		94A3A9FC269BD8DE00016C70 /* UtilsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A3A9FB269BD8DE00016C70 /* UtilsMock.swift */; };
 		94A3A9FE269BDC7900016C70 /* CurrenciesListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A3A9FD269BDC7900016C70 /* CurrenciesListViewModelTest.swift */; };
 		94B449FE272B52BB0031A19F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B449FD272B52BA0031A19F /* MainCoordinator.swift */; };
+		94B44A00272B5D070031A19F /* ConversionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B449FF272B5D070031A19F /* ConversionCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		94A3A9FB269BD8DE00016C70 /* UtilsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsMock.swift; sourceTree = "<group>"; };
 		94A3A9FD269BDC7900016C70 /* CurrenciesListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewModelTest.swift; sourceTree = "<group>"; };
 		94B449FD272B52BA0031A19F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		94B449FF272B5D070031A19F /* ConversionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 		949D966B2696B6730021A897 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				94B449FF272B5D070031A19F /* ConversionCoordinator.swift */,
 				94200D4926951C8900D61707 /* ConversionViewController.swift */,
 				949D96762697E0040021A897 /* CurrenciesViewController.swift */,
 			);
@@ -340,6 +343,7 @@
 				94200D4A26951C8900D61707 /* ConversionViewController.swift in Sources */,
 				94200D4626951C8900D61707 /* AppDelegate.swift in Sources */,
 				949D9668269673910021A897 /* ViewCode.swift in Sources */,
+				94B44A00272B5D070031A19F /* ConversionCoordinator.swift in Sources */,
 				949D967D2698EDD10021A897 /* QuoteModel.swift in Sources */,
 				94200D7F2695290F00D61707 /* NetworkManager.swift in Sources */,
 				949D96732697D1AB0021A897 /* CurrenciesTableViewCell.swift in Sources */,

@@ -16,7 +16,7 @@ class ConversionViewController: UIViewController {
     private let conversionView = ConversionView()
     private var originQuote: QuoteModel?
     private var destinyQuote: QuoteModel?
-    var coordinator: MainCoordinator?
+    var coordinator: ConversionCoordinator?
 
 
     override func viewDidLoad() {

@@ -25,15 +25,9 @@ class MainCoordinator: MainCoordinatorProtocol {
     
     
     func start() {
-        let controller = ConversionViewController()
-        controller.coordinator = self 
-        navagationController.pushViewController(controller, animated: true)
-    }
-    
-    func goToCurrenciesView(buttonSeleted: String) {
-        let view = CurrenciesViewController()
-        view.buttonSeleted = buttonSeleted
-        navagationController.pushViewController(view, animated: true)
+        let conversionCoordinator =  ConversionCoordinator(navagationController: navagationController)
+        children.append(conversionCoordinator)
+        conversionCoordinator.start()
     }
  
 }
