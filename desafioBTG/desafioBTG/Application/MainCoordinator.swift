@@ -25,9 +25,9 @@ class MainCoordinator: MainCoordinatorProtocol {
     
     
     func start() {
-        let conversionCoordinator =  ConversionCoordinator(navagationController: navagationController)
-        children.append(conversionCoordinator)
-        conversionCoordinator.start()
+        let menuCoordinator =  MenuCoordinator(navagationController: navagationController)
+        children.append(menuCoordinator)
+        menuCoordinator.start()
     }
  
 }
