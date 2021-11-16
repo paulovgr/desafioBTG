@@ -16,6 +16,8 @@ class ConversionView: UIView {
     let textField = DesignSystem.setupTextField()
     private let resultLabel = DesignSystem.setupLabel("Resultado", 30)
     private let arrowLabel = DesignSystem.setupLabel("→", 30)
+    let buttonBack = DesignSystem.setupButton("Back")
+
     
     init() {
         super.init(frame: .zero)
@@ -50,6 +52,7 @@ extension ConversionView: ViewCode {
         addSubview(resultLabel)
         addSubview(arrowLabel)
         addSubview(destinyButton)
+        addSubview(buttonBack)
     }
     
     func setupConstraints() {
@@ -80,6 +83,13 @@ extension ConversionView: ViewCode {
             resultLabel.leadingAnchor.constraint(equalTo: self.convertButton.leadingAnchor),
             resultLabel.topAnchor.constraint(equalTo: self.convertButton.bottomAnchor, constant: 16),
             resultLabel.trailingAnchor.constraint(equalTo: self.convertButton.trailingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            buttonBack.heightAnchor.constraint(equalTo: convertButton.heightAnchor),
+            buttonBack.leadingAnchor.constraint(equalTo: self.convertButton.leadingAnchor),
+            buttonBack.topAnchor.constraint(equalTo: self.resultLabel.bottomAnchor, constant: 16),
+            buttonBack.trailingAnchor.constraint(equalTo: self.convertButton.trailingAnchor)
         ])
         
         NSLayoutConstraint.activate([

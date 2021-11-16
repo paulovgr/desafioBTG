@@ -47,6 +47,7 @@ extension ConversionViewController {
         conversionView.convertButton.addTarget(self, action: #selector(convertButtonTapped), for: .touchUpInside)
         conversionView.destinyButton.addTarget(self, action: #selector(destinyButtonTap), for: .touchUpInside)
         conversionView.originButton.addTarget(self, action: #selector(originButtonTap), for: .touchUpInside)
+        conversionView.buttonBack.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
     }
     
     
@@ -74,6 +75,10 @@ extension ConversionViewController {
     
     @objc func originButtonTap() {
         coordinator?.goToCurrenciesView(buttonSeleted: "originButton")
+    }
+    
+    @objc func backButtonTap() {
+        coordinator?.backTap()
     }
     
     private func setupOriginModel () -> QuoteModel{

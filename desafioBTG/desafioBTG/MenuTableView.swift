@@ -13,6 +13,7 @@ protocol MenuDelegate {
 }
 class MenuTableView: UIView {
     private let pageNames = ["Conversor de moedas"]
+    private let button = UIButton(frame: .zero)
     var delegate: MenuDelegate?
     lazy var pageNamesTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -75,6 +76,5 @@ extension MenuTableView: ViewCode {
             pageNamesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }
-    
     
 }

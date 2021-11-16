@@ -7,13 +7,16 @@
 
 import Foundation
 import UIKit
+import Network
 
 class ConversionCoordinator: MainCoordinatorProtocol {
     var children: [MainCoordinatorProtocol] = []
     var navagationController: UINavigationController
+    weak var parent: MenuCoordinator?
     
-    init (navagationController: UINavigationController) {
+    init (navagationController: UINavigationController, parent: MenuCoordinator) {
         self.navagationController = navagationController
+        self.parent = parent
     }
     
     
@@ -27,5 +30,9 @@ class ConversionCoordinator: MainCoordinatorProtocol {
         let view = CurrenciesViewController()
         view.buttonSeleted = buttonSeleted
         navagationController.pushViewController(view, animated: true)
+    }
+    
+    func backTap () {
+        parent?.backTap(coordinator: self)
     }
 }

@@ -29,12 +29,19 @@ extension MenuCoordinator {
     func goToPage (indexPath: Int) {
         switch indexPath {
         case 0:
-            let coordinator = ConversionCoordinator(navagationController: navagationController)
+            let coordinator = ConversionCoordinator(navagationController: navagationController, parent: self)
             coordinator.start()
             children.append(coordinator)
             
         default:
             break;
         }
+    }
+    
+    func backTap(coordinator: MainCoordinatorProtocol) {
+        children.removeAll {
+            $0 is ConversionCoordinator
+        }
+        navagationController.popViewController(animated: true)
     }
 }
