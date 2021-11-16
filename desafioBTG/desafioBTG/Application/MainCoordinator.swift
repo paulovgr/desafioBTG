@@ -28,6 +28,7 @@ class MainCoordinator: MainCoordinatorProtocol {
         let menuCoordinator =  MenuCoordinator(navagationController: navagationController)
         children.append(menuCoordinator)
         menuCoordinator.start()
+        
     }
  
 }

@@ -8,8 +8,12 @@
 import Foundation
 import UIKit
 
+protocol MenuDelegate {
+    func goToPage (indexPath: Int)
+}
 class MenuTableView: UIView {
     private let pageNames = ["Conversor de moedas"]
+    var delegate: MenuDelegate?
     lazy var pageNamesTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +34,9 @@ class MenuTableView: UIView {
 }
 
 extension MenuTableView: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.goToPage(indexPath: indexPath.row)
+    }
 }
 
 extension MenuTableView: UITableViewDataSource {

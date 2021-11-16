@@ -18,6 +18,23 @@ class MenuCoordinator: MainCoordinatorProtocol {
     func start() {
         let controller = MenuViewController()
         controller.coordinator = self
+        //controller.de
         navagationController.pushViewController(controller, animated: true)
+    }
+    
+
+}
+
+extension MenuCoordinator {
+    func goToPage (indexPath: Int) {
+        switch indexPath {
+        case 0:
+            let coordinator = ConversionCoordinator(navagationController: navagationController)
+            coordinator.start()
+            children.append(coordinator)
+            
+        default:
+            break;
+        }
     }
 }
